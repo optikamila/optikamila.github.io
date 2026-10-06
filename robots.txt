@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Nema stranica koje treba blokirati — sajt je javna prezentacija.
+# Zaštita od neželjenih parametara (duplikati):
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+
+Sitemap: https://www.optikamila.com/sitemap.xml

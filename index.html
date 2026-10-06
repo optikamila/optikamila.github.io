@@ -1,95 +1,462 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <title>Optika Mila</title>
-        <link href="https://fonts.googleapis.com/css?family=Exo+2:400,700|Muli:400,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="dist/magnific-popup.css">
-        <link rel="stylesheet" href="css/style.css" type="text/css">
-    </head>
-    <body>
-        <header id="header">
+<html lang="sr-Latn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Optika Mila Foča — Pregled vida, dioptrija, naočare i sočiva</title>
+<meta name="description" content="Optika Mila Foča — kompjutersko određivanje dioptrije, mjerenje očnog pritiska, dubinski pregled oka, izrada i popravka naočara, kontaktna sočiva.">
+<link rel="canonical" href="https://www.optikamila.com/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#F7F4EE">
+<meta name="author" content="Optika Mila">
+<meta name="geo.region" content="BA-SRP">
+<meta name="geo.placename" content="Foča">
+<meta name="geo.position" content="43.5079657;18.7729304">
+<meta name="ICBM" content="43.5079657, 18.7729304">
 
-        <div class="wrapper">
-            <i class="fa fa-eye fa-4x logo" aria-hidden="true"></i>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="sr_Latn_BA">
+<meta property="og:site_name" content="Optika Mila">
+<meta property="og:title" content="Optika Mila Foča — Pregled vida, dioptrija, naočare i sočiva">
+<meta property="og:description" content="Kompjutersko određivanje dioptrije, mjerenje očnog pritiska, dubinski pregled oka, izrada i popravka naočara, kontaktna sočiva. Petra Bojovića, Foča.">
+<meta property="og:url" content="https://www.optikamila.com/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Optika Mila Foča — Pregled vida, dioptrija, naočare i sočiva">
+<meta name="twitter:description" content="Kompjutersko određivanje dioptrije, mjerenje očnog pritiska, dubinski pregled oka, izrada i popravka naočara, kontaktna sočiva.">
 
+<!-- ?v=2 — pregledači keširaju favicon agresivno i običan refresh ga NE osvježi.
+     Kad se ikonica promijeni, podigni broj (v=3, v=4…) da je browser ponovo učita. -->
+<link rel="icon" href="favicon.ico?v=2" sizes="any">
+<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=2">
 
-            <nav id="nav">
-                <ul>
-                    <li><a href="#prvi" class="dugme">Home</a></li>
-                    <li><a href="#about" class="dugme">Opis</a></li>
-                    <li><a href="#idea" class="dugme">Galerija</a></li>
-                    <li><a href="#contact" class="dugme">Kontakt</a></li>
-                </ul>
-                <a href="#" id="respmenu">Prikaži/sakrij navigaciju</a>
-            </nav>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap">
+<link rel="stylesheet" href="css/style.css">
 
+<!-- P37 — bez ovoga bi bez JavaScripta nestalo oko 60 % strane: sve što nosi
+     `.reveal` (četiri <h2>, rešetka usluga, galerija, kontakt) ostaje na
+     `opacity:0`, jer klasu `.is-visible` dodaje isključivo skripta. Izmjereno:
+     8 od 8 blokova nevidljivo.
+     Klasa `js` se stavlja OVDJE, prije prvog iscrtavanja, i samo ona uključuje
+     skrivanje (`html.js .reveal` u CSS-u). Ako se ova skripta ne izvrsi, klase
+     nema, pravilo se ne primjenjuje i sav sadrzaj je vidljiv.
+     `<noscript>` sam ovdje NIJE dovoljan — on radi samo kad je skriptovanje
+     iskljuceno u pregledacu, ne i kad se `js/script.js` ne ucita. -->
+<script>
+document.documentElement.classList.add('js');
+/* Mreza za slucaj da se `js/script.js` ipak ne ucita: ako se glavna skripta
+   ne javi u roku od 3 s, otkrij sve sto nosi `.reveal`. U normalnom radu se
+   ovo nikada ne izvrsi — zastavicu `__omReveal` postavi glavna skripta. */
+setTimeout(function () {
+  if (window.__omReveal) return;
+  var n = document.querySelectorAll('.reveal'), i;
+  for (i = 0; i < n.length; i++) n[i].classList.add('is-visible');
+}, 3000);
+</script>
 
+<!-- P57 — ista usluga se zvala na dva načina. JSON-LD katalog je jedini pisao
+     „Kompjutersko mjerenje očnog pritiska", a meta opis, vidljiva usluga 01 i
+     ostali JSON-LD samo „mjerenje očnog pritiska" (četiri mjesta prema jednom).
+     Na pitanje da li se pritisak mjeri kompjuterskim tonometrom korisnik je rekao
+     „nije bitno kako se mjeri" — pa je riječ UKLONJENA, a ne dodata na ostala
+     mjesta: tako se usluga svuda zove isto i ne tvrdi ništa o opremi. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Optician",
+      "@id": "https://www.optikamila.com/#firma",
+      "name": "Optika Mila",
+      "alternateName": "Zanatsko-trgovinska radnja OPTIKA-MILA Mila Radović s.p.",
+      "description": "Savremena i stručno osposobljena očna kuća u Foči — kompjutersko određivanje dioptrije, mjerenje očnog pritiska, dubinski pregled oka, izrada naočara i kontaktna sočiva.",
+      "url": "https://www.optikamila.com/",
+      "telephone": "+38758210734",
+      "email": "milaradovic54@gmail.com",
+      "logo": "https://www.optikamila.com/icon-192.png",
+      "priceRange": "$$",
+      "currenciesAccepted": "BAM",
+      "paymentAccepted": "Gotovina, platna kartica",
+      "foundingDate": "1997",
+      "founder": { "@type": "Person", "name": "Mila Radović", "honorificPrefix": "primarius dr" },
+      "employee": { "@type": "Person", "name": "Mila Radović", "honorificPrefix": "primarius dr", "jobTitle": "Doktor medicine — optometrija" },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Petra Bojovića",
+        "addressLocality": "Foča",
+        "postalCode": "73300",
+        "addressRegion": "Republika Srpska",
+        "addressCountry": "BA"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 43.5079657, "longitude": 18.7729304 },
+      "hasMap": "https://maps.google.com/?cid=6285597868325279433",
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "16:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
+      ],
+      "areaServed": [
+        { "@type": "City", "name": "Foča" },
+        { "@type": "City", "name": "Nevesinje" },
+        { "@type": "City", "name": "Rogatica" },
+        { "@type": "City", "name": "Gacko" }
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Usluge",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kompjutersko određivanje dioptrije" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mjerenje očnog pritiska" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dubinski pregled oka" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Izrada naočara sa utvrđenom dioptrijom" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kontaktna sočiva i sredstva za održavanje" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Popravka naočara" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kompjuterska ugradnja optičkih stakala na licu mjesta" } }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.optikamila.com/#sajt",
+      "url": "https://www.optikamila.com/",
+      "name": "Optika Mila Foča",
+      "inLanguage": "sr-Latn",
+      "publisher": { "@id": "https://www.optikamila.com/#firma" }
+    }
+  ]
+}
+</script>
+</head>
 
+<body>
+<a class="skip-link" href="#main">Preskoči na sadržaj</a>
+
+<header class="site-header" id="vrh">
+  <div class="wrap header-inner">
+    <a class="brand" href="#vrh">
+      <svg class="brand-mark" viewBox="0 0 1792 1280" width="38" height="27"
+           aria-hidden="true" focusable="false"><path fill="currentColor" d="M1664 704q-152-236-381-353q61 104 61 225q0 185-131.5 316.5T896 1024T579.5 892.5T448 576q0-121 61-225q-229 117-381 353q133 205 333.5 326.5T896 1152t434.5-121.5T1664 704M944 320q0-20-14-34t-34-14q-125 0-214.5 89.5T592 576q0 20 14 34t34 14t34-14t14-34q0-86 61-147t147-61q20 0 34-14t14-34m848 384q0 34-20 69q-140 230-376.5 368.5T896 1280t-499.5-139T20 773Q0 738 0 704t20-69q140-229 376.5-368T896 128t499.5 139T1772 635q20 35 20 69"/></svg>
+      <span class="brand-txt">
+        <span class="brand-name">Optika Mila</span>
+        <span class="brand-sub">Očna kuća u Foči · od 1997.</span>
+      </span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="glavna-navigacija">
+      <span class="nav-toggle-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Meni</span>
+    </button>
+
+    <nav id="glavna-navigacija" class="site-nav" aria-label="Glavna navigacija">
+      <a class="nav-phone" href="tel:+38758210734">
+        <svg class="btn-ico" viewBox="0 0 20 20" width="20" height="20"
+             fill="currentColor" aria-hidden="true" focusable="false">
+          <path d="M17.256 12.253c-.096-.667-.611-1.187-1.274-1.342c-2.577-.604-3.223-2.088-3.332-3.734C12.193 7.092 11.38 7 10 7s-2.193.092-2.65.177c-.109 1.646-.755 3.13-3.332 3.734c-.663.156-1.178.675-1.274 1.342l-.497 3.442C2.072 16.907 2.962 18 4.2 18h11.6c1.237 0 2.128-1.093 1.953-2.305zM10 15.492c-1.395 0-2.526-1.12-2.526-2.5s1.131-2.5 2.526-2.5s2.526 1.12 2.526 2.5s-1.132 2.5-2.526 2.5M19.95 6c-.024-1.5-3.842-3.999-9.95-4C3.891 2.001.073 4.5.05 6s.021 3.452 2.535 3.127c2.941-.381 2.76-1.408 2.76-2.876C5.345 5.227 7.737 4.98 10 4.98s4.654.247 4.655 1.271c0 1.468-.181 2.495 2.76 2.876C19.928 9.452 19.973 7.5 19.95 6"/>
+        </svg>
+        Pozovite nas · +387 58 210 734
+      </a>
+      <ul>
+        <li><a href="#o-nama">O nama</a></li>
+        <li><a href="#van-foce">Van Foče</a></li>
+        <li><a href="#usluge">Usluge</a></li>
+        <li><a href="#arhiva">Arhiva</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+
+    <a class="header-call" href="tel:+38758210734">+387 58 210 734</a>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+
+  <!-- ================= UVOD: očna kuća + doktorica (spojeno) ================= -->
+  <!-- P48 (v18) — doktorka ne daje svoju fotografiju, pa je portret uklonjen.
+       Desna kolona je postojala SAMO zbog njega; sada u njoj stoji „lična
+       karta" — ime, zvanje i kratak tekst. Naslov je ušao u LIJEVU kolonu da
+       obje počinju na istoj visini. -->
+  <section id="o-nama" class="hero">
+    <div class="wrap hero-grid">
+      <div class="uvod-levo">
+        <h1>Optika Mila Foča</h1>
+
+        <p class="uvod-lead">
+          Savremena i stručno osposobljena očna kuća u Foči, koja uz najviši stepen
+          stručnosti, iskustva i pažnje prema pacijentu, profesionalno i povoljno
+          pruža usluge po pitanju zdravstvene zaštite iz domena oftalmoloških potreba.
+        </p>
+
+        <div class="uvod-actions">
+          <a class="btn btn-solid" href="tel:+38758210734">
+            <svg class="btn-ico" viewBox="0 0 20 20" width="20" height="20"
+                 fill="currentColor" aria-hidden="true" focusable="false">
+              <path d="M17.256 12.253c-.096-.667-.611-1.187-1.274-1.342c-2.577-.604-3.223-2.088-3.332-3.734C12.193 7.092 11.38 7 10 7s-2.193.092-2.65.177c-.109 1.646-.755 3.13-3.332 3.734c-.663.156-1.178.675-1.274 1.342l-.497 3.442C2.072 16.907 2.962 18 4.2 18h11.6c1.237 0 2.128-1.093 1.953-2.305zM10 15.492c-1.395 0-2.526-1.12-2.526-2.5s1.131-2.5 2.526-2.5s2.526 1.12 2.526 2.5s-1.132 2.5-2.526 2.5M19.95 6c-.024-1.5-3.842-3.999-9.95-4C3.891 2.001.073 4.5.05 6s.021 3.452 2.535 3.127c2.941-.381 2.76-1.408 2.76-2.876C5.345 5.227 7.737 4.98 10 4.98s4.654.247 4.655 1.271c0 1.468-.181 2.495 2.76 2.876C19.928 9.452 19.973 7.5 19.95 6"/>
+            </svg>
+            Pozovite nas
+          </a>
+          <!-- P55 — dugme je govorilo „Usluge i oprema", a sekcija #usluge se zove
+               „Usluge" i o opremi ne kaže ništa (oprema postoji samo u alt tekstovima
+               galerije). Naslov u navigaciji je takođe „Usluge" — sada se poklapaju. -->
+          <a class="btn btn-line" href="#usluge">Usluge</a>
         </div>
-    </header>
+      </div>
 
+      <section class="uvod-karta" aria-labelledby="karta-ime">
+        <h2 class="karta-ime" id="karta-ime">primarius dr Mila Radović</h2>
 
-	<section id="prvi">
-    	<div class="wrapper">
-        	<h1>OPTIKA MILA FOČA</h1>
-       	 	<p>Savremeni i stručno osposobljena očna kuća u Foči, koja uz najviši stepen stručnosti, iskustva i pažnje prema pacijentu, profesionalno i povoljno pruža usluge po pitanju zdravstvene zaštite iz domena oftalmoloških potreba.</p>
-            <p>Primarius dr. Mila Radović jednom mjesečno u Domu zdravlja u Nevesinju, Rogatici i Gacku.</p>
-            <p>Detaljnija uputstva u Domovima zdravlja ili na tel 058 210 734 i 065 466 101</p>
+        <div class="uvod-text">
+          <h3>Sve preglede obavlja doktorka lično</h3>
+          <!-- P53 — iz prvog pasusa je sklonjena riječ „kompjuterskog". Razlog: P52
+               je u DRUGI pasus uveo „na savremenoj kompjuterskoj dijagnostici", pa se
+               „kompjutersk-" našlo dva puta u istoj kartici, dva reda razmaka. Prodajna
+               poenta (kompjuterska dijagnostika) time nije izgubljena — ona je sada u
+               drugom pasusu. Prikaz sa tri alternative (C i D brišu i nabrajanje usluga,
+               koje ionako stoji u „Uslugama", u meta opisu i u JSON-LD-u):
+               `p53-uvod-tekst.html`. -->
+          <p>
+            Optiku Mila vodi od osnivanja. Pregled, mjerenje i konačan nalaz su u
+            njenim rukama — od određivanja dioptrije i mjerenja očnog pritiska do
+            dubinskog pregleda oka.
+          </p>
+          <!-- P52 — drugi pasus je prepravljen. Stari je: „Radi precizno i temeljno,
+               uz savremenu kompjutersku dijagnostičku opremu. Stručnost i dugogodišnje
+               iskustvo idu zajedno sa pristupačnim cijenama."
+               Četiri stvari su bile pogrešne: (1) „radi precizno i temeljno" je tvrdnja o
+               sebi bez slike; (2) „savremenu kompjutersku dijagnostičku opremu" su tri
+               pridjeva ispred imenice; (3) „stručnost i dugogodišnje iskustvo" PONAVLJA
+               uvodni pasus riječ po riječ — 28 redova iznad stoji „uz najviši stepen
+               stručnosti, iskustva i pažnje"; (4) „idu zajedno" ne nosi ništa.
+               Korisnik je izabrao varijantu D (jedna rečenica), uz zamjenu „bez žurbe"
+               → „smireno". Prikaz sa svim varijantama: `p52-uvod-tekst.html`. -->
+          <!-- P55 — cijena je izbačena iz kartice. Razlog: „povoljno" (uvod, red 181) i
+               „po povoljnim cijenama" (Usluge 02) već nose tu misao, a treće pominjanje
+               („cijene koje ostaju pristupačne") je bilo jedno previše. Umjesto nje
+               „višedecenijska praksa" — iskustvo, ne cijena. -->
+          <p>
+            Smireno i bez improvizacije, na savremenoj kompjuterskoj dijagnostici — uz
+            višedecenijsku praksu.
+          </p>
         </div>
-    </section>
+      </section>
+    </div>
+  </section>
 
-    <section id="about">
-        <div class="wrapper">
-            <img src="css/img/elegance.jpg" alt="logo">
-            <h2>STRUČNOST I PROFESIONALIZAM</h2>
-            <p>Optika MILA u Foči, smatra se jednim od najpovoljnijih subjekata sa svom potrebnom stručnom i dijagnostičkom opremom za određivanje dioptrije i korekciju vida.<br />
-                <br />-kompjutersko određivanje dioptrije
-                <br />-kompjutersko mjerenje očnog pritiska
-                <br />-dubinski pregled oka </p><br />
-            <h2>IZRADA NAOČARA I SOČIVA</h2>
-            <p>Nakon stručnog i savremenog pregleda, u očnoj kući OPTIKA MILA, možete se snabdjeti po najpovoljnijim cijenama.<br />
-                <br />-naočare sa utvrđenom dioptrijom
-                <br />-sve vrste kontaktnih sočiva i sredstava za održavanje
-                <br />-popravka naočara
-            <br /><br />Vršimo kompjutersku ugradnju optičkih stakala na licu mjesta. </p>
+  <!-- ================= VAN FOČE ================= -->
+  <section id="van-foce" class="band band-tint">
+    <div class="wrap">
+      <h2 class="reveal">Pregledi van Foče</h2>
+
+      <p class="lead">
+        Primarius dr Mila Radović jednom mjesečno obavlja preglede u&nbsp;Domovima zdravlja:
+      </p>
+
+      <ul class="route reveal" aria-label="Mjesta koja se posjećuju jednom mjesečno">
+        <li><span class="dot" aria-hidden="true"></span>Nevesinje</li>
+        <li><span class="dot" aria-hidden="true"></span>Rogatica</li>
+        <li><span class="dot" aria-hidden="true"></span>Gacko</li>
+      </ul>
+
+      <p class="route-note">
+        Detaljnija uputstva dobijate u Domovima zdravlja ili na telefon
+        <a href="tel:+38758210734">+387 58 210 734</a> i
+        <a href="tel:+38765466101">+387 65 466 101</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= USLUGE ================= -->
+  <section id="usluge" class="band">
+    <div class="wrap">
+      <h2 class="reveal">Usluge</h2>
+
+      <ul class="services reveal">
+        <li>
+          <span class="svc-n">01</span>
+          <h3>Pregled vida</h3>
+          <p>Kompjutersko određivanje dioptrije, mjerenje očnog pritiska i dubinski pregled oka.</p>
+        </li>
+        <li>
+          <span class="svc-n">02</span>
+          <h3>Naočare</h3>
+          <p>Izrada naočara sa utvrđenom dioptrijom i ugradnja stakala na licu mjesta, po povoljnim cijenama.</p>
+        </li>
+        <li>
+          <span class="svc-n">03</span>
+          <h3>Kontaktna sočiva</h3>
+          <!-- P54 — bilo: „...i sredstava za održavanje, uz savjet o njezi." — „održavanje"
+               i „njega" su isti pojam dvaput u istoj rečenici. Sada je drugi dio „savjet
+               pri izboru", što je druga informacija. -->
+          <p>Sve vrste kontaktnih sočiva i sredstava za održavanje, uz savjet pri izboru.</p>
+        </li>
+        <li>
+          <span class="svc-n">04</span>
+          <h3>Popravka naočara</h3>
+          <!-- P54 — bilo: „Zamjena vijaka, ispravljanje okvira i zamjena oštećenih stakala."
+               — „zamjena" dvaput u istoj rečenici. Sada je jedan glagol za oba predmeta. -->
+          <p>Zamjena vijaka i oštećenih stakala, uz ispravljanje okvira.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= ARHIVA ================= -->
+  <section id="arhiva" class="band band-tint">
+    <div class="wrap">
+      <h2 class="reveal">Arhiva</h2>
+
+      <ul class="gallery reveal">
+        <li><a class="gal" href="img/galerija/optika_mila_1-full.webp">
+          <img src="img/galerija/optika_mila_1-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_1-thumb-320.webp 320w, img/galerija/optika_mila_1-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Ulaz u Optiku Mila u Foči — natpis iznad vrata na zgradi od žute cigle"></a></li>
+
+        <li><a class="gal" href="img/galerija/optika_mila_10-full.webp">
+          <img src="img/galerija/optika_mila_10-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_10-thumb-320.webp 320w, img/galerija/optika_mila_10-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Unutrašnjost prodajnog prostora Optike Mila sa mušterijama i vitrinama sa naočarima"></a></li>
+
+        <li><a class="gal" href="img/galerija/optika_mila_11-full.webp">
+          <img src="img/galerija/optika_mila_11-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_11-thumb-320.webp 320w, img/galerija/optika_mila_11-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Tri poslužavnika sa okvirima za naočare — Ray-Ban, Boss, Dolce &amp; Gabbana, Police i Gucci"></a></li>
+
+        <li><a class="gal" href="img/galerija/optika_mila_12-full.webp">
+          <img src="img/galerija/optika_mila_12-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_12-thumb-320.webp 320w, img/galerija/optika_mila_12-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Poslužavnik sa okvirima od metala tankih ivica u više boja"></a></li>
+
+        <li><a class="gal" href="img/galerija/optika_mila_4-full.webp">
+          <img src="img/galerija/optika_mila_4-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_4-thumb-320.webp 320w, img/galerija/optika_mila_4-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Staklene vitrine sa naočarima, kutijama kontaktnih sočiva i promotivnim posterom"></a></li>
+
+        <li><a class="gal" href="img/galerija/optika_mila_7-full.webp">
+          <img src="img/galerija/optika_mila_7-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_7-thumb-320.webp 320w, img/galerija/optika_mila_7-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Zidni i stojeći stalkci sa okvirima naočara i ogledalo u prodajnom prostoru"></a></li>
+
+        <li><a class="gal" href="img/galerija/optika_mila_3-full.webp">
+          <img src="img/galerija/optika_mila_3-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_3-thumb-320.webp 320w, img/galerija/optika_mila_3-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Ordinacija za pregled vida — osvijetljena tabla sa optotipima, stolica i aparat za pregled oka"></a></li>
+
+        <li><a class="gal" href="img/galerija/optika_mila_2-full.webp">
+          <img src="img/galerija/optika_mila_2-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_2-thumb-320.webp 320w, img/galerija/optika_mila_2-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Dijagnostička oprema u ordinaciji — autorefraktometar, biomikroskop i probni okvir"></a></li>
+
+        <li><a class="gal" href="img/galerija/optika_mila_6-full.webp">
+          <img src="img/galerija/optika_mila_6-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_6-thumb-320.webp 320w, img/galerija/optika_mila_6-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Doktorka u bijelom mantilu obavlja pregled oka pacijentu na aparatu, tabla sa optotipima u pozadini"></a></li>
+
+        <li><a class="gal" href="img/galerija/optika_mila_9-full.webp">
+          <img src="img/galerija/optika_mila_9-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_9-thumb-320.webp 320w, img/galerija/optika_mila_9-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
+               alt="Pregled oka na biomikroskopu SL-10 uz prisustvo pratnje pacijenta"></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= KONTAKT ================= -->
+  <section id="kontakt" class="band">
+    <div class="wrap">
+      <h2 class="reveal">Kontakt</h2>
+      <p class="lead kontakt-lead">Posjetite nas u radnji ili nas pozovite.</p>
+
+      <div class="contact-grid reveal">
+        <div>
+          <dl class="facts">
+            <div class="fact">
+              <dt><svg class="fact-ico" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 1C5.7 1 3 3.7 3 7c0 4.5 6 10 6 10s6-5.5 6-10c0-3.3-2.7-6-6-6z"/><circle cx="9" cy="7" r="2"/></svg>Adresa</dt>
+              <dd>Petra Bojovića<br>73300 Foča, Bosna i Hercegovina</dd>
+            </div>
+            <div class="fact">
+              <dt><svg class="fact-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Telefon</dt>
+              <dd class="fact-links">
+                <a href="tel:+38758210734">+387 58 210 734</a>
+                <a href="tel:+38765466101">+387 65 466 101</a>
+              </dd>
+            </div>
+            <div class="fact">
+              <dt><svg class="fact-ico" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="16" height="12" rx="2"/><path d="M1 5l8 5 8-5"/></svg>Email</dt>
+              <dd class="fact-links"><a href="mailto:milaradovic54@gmail.com">milaradovic54@gmail.com</a></dd>
+            </div>
+            <div class="fact">
+              <dt><svg class="fact-ico" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M9 4.5V9l3.5 2"/></svg>Radno vrijeme</dt>
+              <dd>
+                <table class="hours">
+                  <tbody>
+                    <tr><th scope="row">Ponedjeljak – petak</th><td>09:00–16:00</td></tr>
+                    <tr><th scope="row">Subota</th><td>09:00–14:00</td></tr>
+                    <tr><th scope="row">Nedjelja</th><td class="closed">zatvoreno</td></tr>
+                  </tbody>
+                </table>
+              </dd>
+            </div>
+          </dl>
+
+          <a class="btn btn-solid btn-wide"
+             href="https://maps.google.com/?cid=6285597868325279433"
+             target="_blank" rel="noopener">Otvorite u Google Mapama</a>
         </div>
 
-    </section>
+        <figure class="contact-map">
+          <div class="inner">
+            <!-- P47 (v17) — `tabindex="-1"`: bez njega Tab ulazi U Google-ov embed
+                 i zadrzi se tamo, pa se do linkova u podnozju stize tek poslije
+                 niza pritisaka kroz tudji interfejs. Mapa nije jedini put do
+                 informacije — adresa stoji u podacima lijevo, a dugme
+                 „Otvorite u Google Mapama" vodi na punu mapu. -->
+            <iframe
+              title="Lokacija Optike Mila na mapi — Petra Bojovića, Foča"
+              src="https://maps.google.com/maps?cid=6285597868325279433&amp;output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+              tabindex="-1"></iframe>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
 
+</main>
 
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div>
+      <div class="footer-brand">
+        <svg class="footer-mark" viewBox="0 0 1792 1280" width="32" height="23"
+             aria-hidden="true" focusable="false"><path fill="currentColor" d="M1664 704q-152-236-381-353q61 104 61 225q0 185-131.5 316.5T896 1024T579.5 892.5T448 576q0-121 61-225q-229 117-381 353q133 205 333.5 326.5T896 1152t434.5-121.5T1664 704M944 320q0-20-14-34t-34-14q-125 0-214.5 89.5T592 576q0 20 14 34t34 14t34-14t14-34q0-86 61-147t147-61q20 0 34-14t14-34m848 384q0 34-20 69q-140 230-376.5 368.5T896 1280t-499.5-139T20 773Q0 738 0 704t20-69q140-229 376.5-368T896 128t499.5 139T1772 635q20 35 20 69"/></svg>
+        <p class="footer-name">Optika Mila</p>
+      </div>
+      <p class="footer-legal">Zanatsko-trgovinska radnja „OPTIKA-MILA“ Mila Radović s.p.<br>
+      Petra Bojovića, 73300 Foča · JIB 4503790350002</p>
+    </div>
+    <nav class="footer-nav" aria-label="Navigacija u podnožju">
+      <a href="#o-nama">O nama</a>
+      <a href="#van-foce">Van Foče</a>
+      <a href="#usluge">Usluge</a>
+      <a href="#arhiva">Arhiva</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 1997–2026 Optika Mila Foča</p>
+      <p class="footer-credit">Icon: <a href="https://entypo.com/" rel="noopener">Entypo</a> &middot; <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license noopener">CC BY-SA 4.0</a></p>
+    </div>
+  </div>
+</footer>
 
-    <section id="idea">
-    	<div class="wrapper">
-            <div class="responsive"><a href="css/img/galerija/optika_mila_1.JPG" class="image-link"><img src="css/img/galerija/optika_mila_1.JPG"></a></div>
-            <div class="responsive"><a href="css/img/galerija/optika_mila_2.JPG" class="image-link"><img src="css/img/galerija/optika_mila_2.JPG"></a></div>
-            <div class="responsive"><a href="css/img/galerija/optika_mila_3.JPG" class="image-link"><img src="css/img/galerija/optika_mila_3.JPG"></a></div>
-            <div class="responsive"><a href="css/img/galerija/optika_mila_4.JPG" class="image-link"><img src="css/img/galerija/optika_mila_4.JPG"></a></div>
-            <div class="responsive"><a href="css/img/galerija/optika_mila_11.JPG" class="image-link"><img src="css/img/galerija/optika_mila_11.JPG"></a></div>
-            <div class="responsive"><a href="css/img/galerija/optika_mila_6.JPG" class="image-link"><img src="css/img/galerija/optika_mila_6.JPG"></a></div>
-            <div class="responsive"><a href="css/img/galerija/optika_mila_7.JPG" class="image-link"><img src="css/img/galerija/optika_mila_7.JPG"></a></div>
-            <div class="responsive"><a href="css/img/galerija/optika_mila_12.JPG" class="image-link"><img src="css/img/galerija/optika_mila_12.JPG"></a></div>
-            <div class="responsive"><a href="css/img/galerija/optika_mila_9.JPG" class="image-link"><img src="css/img/galerija/optika_mila_9.JPG"></a></div>
-            <div class="responsive"><a href="css/img/galerija/optika_mila_10.JPG" class="image-link"><img src="css/img/galerija/optika_mila_10.JPG"></a></div>
-         </div>
-    </section>
+<dialog id="lightbox" class="lightbox" aria-label="Pregled fotografija iz arhive">
+  <div class="lightbox-bar">
+    <p class="lightbox-count" aria-live="polite"></p>
+    <button class="lightbox-close" type="button" aria-label="Zatvori pregled">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </div>
 
-    <section id="contact">
-        <div class="wrapper">
-            <h1>KONTAKT</h1>
-                <p><i class="fa fa-2x fa-phone"></i> 058 210 734, 065 466 101</p>
-                <p><i class="fa fa-2x fa-envelope"></i> milaradovic54@gmail.com</p>
-                <p><i class="fa fa-2x fa-globe"></i> www.optikamila.com</p>
-                <p><i class="fa fa-2x fa-home"></i> Petra Bojovića, 73300 Foča</p>
-        </div>
+  <div class="lightbox-stage">
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Prethodna fotografija">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <img id="lightbox-img" alt="">
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Sljedeća fotografija">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+  </div>
+</dialog>
 
-    </section>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="dist/jquery.magnific-popup.js"></script>
-    <script src="js/script.js"></script>
-
-    </body>
+<script src="js/script.js" defer></script>
+</body>
 </html>

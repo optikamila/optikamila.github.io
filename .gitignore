@@ -1,0 +1,9 @@
+# Radne kopije revizije. `audit-v2.py` ih pravi U SAMOM SAJTU (proba mora da vidi
+# relativne putanje) i brise ih na kraju — ali nasilan prekid se ne moze uhvatiti.
+# Ova linija je zadnja brana: i da ostanu, ne mogu da odu na sajt.
+_*.html
+
+# Sistemsko smece
+.DS_Store
+Thumbs.db
+desktop.ini

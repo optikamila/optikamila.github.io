@@ -1,0 +1,12 @@
+# Tekstualni fajlovi: LF i u repozitorijumu i u radnoj kopiji.
+# Bez ovoga `core.autocrlf=true` (prenosivi Git na Windows-u) prepisuje radne
+# fajlove u CRLF pri svakom checkout-u — diff suma, a radna kopija se razlikuje
+# od one koja je provjerena. Vec se vidi na `favicon.svg` (u repozitorijumu LF,
+# u radnoj kopiji CRLF).
+* text=auto eol=lf
+
+# Slike i ikonice — nikakvo prekodiranje
+*.png  binary
+*.ico  binary
+*.webp binary
+*.jpg  binary
