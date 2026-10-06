@@ -56,11 +56,23 @@
    u <head>. Taj zahtjev je RENDER-BLOCKING (PSI: 750 ms) i vukao je lanac preko
    dva tudja domena: fonts.googleapis.com -> fonts.gstatic.com -> cetiri .woff2.
    Sada se ISTA cetiri fajla koja je Google servirao nalaze u `fonts/` i ucitavaju
-   se sa naseg domena; dva koja pokrivaju osnovni latin se PRELOAD-uju u <head>,
-   pa pocinju da se skidaju odmah, a ne poslije CSS-a.
+   se sa naseg domena.
+
+   NEMA `preload`-a za fontove, i to je izmjereno a ne pretpostavljeno: `style.css`
+   je JEDINI render-blocking resurs, a preload fontova ga odlaze jer dele propusni
+   opseg (626 ms bez preload-a -> 939 ms sa dva -> 1410 ms sa cetiri, na 1,6 Mb/s).
+   Pomeranje `stylesheet` linka ispred preload tagova ne pomaze (939 vs 947 ms).
+   Na mobilnom prikazu je bez preload-a bolje i FCP i LCP; CLS je <=0,005 u svim
+   varijantama, pa `swap` nista ne pomjera. Detalji u komentaru u `index.html`.
+
    Fajlovi su VARIJABILNI (jedan pokriva tezine 400-700 — provjereno: isti zahtjev
    sa jednom tezinom daje DRUGI fajl), pa je `font-weight` opseg, a ne pojedinacna
-   vrijednost. `unicode-range` je prepisan sa Google-a, pa su subsetovi isti. */
+   vrijednost. Google za 400/600/700 servira ISTI fajl, pa tri tezine ne znace tri
+   fajla — zato su cetiri, koliko ih i PSI prijavljuje.
+   `unicode-range` je prepisan programski iz
+   https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400..700&family=Source+Serif+4:opsz,wght@8..60,400..700
+   (uz Chrome User-Agent), pa su subsetovi identicni onima koje je Google servirao.
+   Dokaz da je render isti: piksel-diff protiv starog sajta = 0 razlika van mape. */
 @font-face{
   font-family:'Source Sans 3'; font-style:normal; font-weight:400 700;
   font-display:swap;
