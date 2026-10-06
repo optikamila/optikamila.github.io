@@ -31,9 +31,27 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=2">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Serif+4:opsz,wght@8..60,400..700&display=swap">
+<!-- P59 — fontovi su sada naši; definisani su u `css/style.css`.
+     Google Fonts <link> je bio RENDER-BLOCKING (PSI: 750 ms) i vukao je lanac preko
+     dva tuđa domena, pa je uklonjen — zajedno sa `preconnect`-om, jer se odande više
+     ništa ne traži.
+
+     NEMA preload-a za fontove, i to je izmjereno, a ne pretpostavljeno. `style.css`
+     je JEDINI render-blocking resurs; preload fontova ga odlaže jer dele propusni
+     opseg (izmjereno na 1,6 Mb/s / 150 ms, medijana 4 prolaza, 1300 px):
+
+         preload                      style.css   FCP     LCP
+         —                            626 ms      727     2180
+         sans-latin (28 KB)           729 ms      804     2640
+         serif-latin (120 KB)         798 ms      1034    1550
+         sans+serif (148 KB)          939 ms      1134    1818
+         sva četiri (305 KB)         1410 ms      1568    2580
+
+     Na mobilnom prikazu (390 px — ono što PSI mjeri) bez preload-a je bolje u OBJE
+     metrike: FCP 736 / LCP 1490, naspram 992 / 1532 sa serifom i 1112 / 1646 sa dva
+     fajla. CLS je zanemarljiv u svim varijantama (≤0,005; prag je 0,1), pa `swap`
+     ništa ne pomjera. Zato: fontove otkriva CSS, a prvo iscrtavanje ide prije njih.
+     (Ponoviti mjerenje: `node cdp-net.mjs --url <adresa> --throttle 1600,150 --timing`.) -->
 <link rel="stylesheet" href="css/style.css">
 
 <!-- P37 — bez ovoga bi bez JavaScripta nestalo oko 60 % strane: sve što nosi
