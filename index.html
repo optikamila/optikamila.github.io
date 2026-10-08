@@ -13,371 +13,108 @@
 <meta name="geo.placename" content="Foča">
 <meta name="geo.position" content="43.5079657;18.7729304">
 <meta name="ICBM" content="43.5079657, 18.7729304">
-
 <meta property="og:type" content="website">
 <meta property="og:locale" content="sr_Latn_BA">
 <meta property="og:site_name" content="Optika Mila">
 <meta property="og:title" content="Optika Mila Foča — Pregled vida, dioptrija, naočare i sočiva">
-<meta property="og:description" content="Kompjutersko određivanje dioptrije, mjerenje očnog pritiska, dubinski pregled oka, izrada i popravka naočara, kontaktna sočiva. Petra Bojovića, Foča.">
+<meta property="og:description" content="Pregled vida, naočare i sočiva u Foči. Primarius dr Mila Radović obavlja preglede i u Nevesinju, Rogatici i Gacku.">
 <meta property="og:url" content="https://www.optikamila.com/">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://www.optikamila.com/img/og-optika-mila.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Optika Mila Foča — pregled vida, naočare i sočiva. U Foči od 1997. godine.">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Optika Mila Foča — Pregled vida, dioptrija, naočare i sočiva">
-<meta name="twitter:description" content="Kompjutersko određivanje dioptrije, mjerenje očnog pritiska, dubinski pregled oka, izrada i popravka naočara, kontaktna sočiva.">
-
-<!-- ?v=2 — pregledači keširaju favicon agresivno i običan refresh ga NE osvježi.
-     Kad se ikonica promijeni, podigni broj (v=3, v=4…) da je browser ponovo učita. -->
-<link rel="icon" href="favicon.ico?v=2" sizes="any">
-<link rel="icon" href="favicon.svg?v=2" type="image/svg+xml">
-<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=2">
-
-<!-- P66 — STIL JE UGRADJEN U SAMU STRANU (07.10.2026).
-     Do tada je stajao `<link rel="stylesheet" href="css/style.css">` i bio je
-     JEDINI render-blokirajući resurs. Ugradnja sklanja JEDAN rund-trip sa kritične
-     putanje. Izmjereno pod PSI-jevim uslovima (390 px, 1,6 Mb/s, 150 ms), tri
-     prolaza po varijanti (`node cdp-net.mjs --mobile --throttle 1600,150 --timing`):
-
-         varijanta          FCP                  LCP
-         <link>             720 / 732 / 736      960 / 996 / 980
-         <style> u strani   476 / 480 / 456      752 / 736 / 724
-
-     FCP −252 ms (−34 %), LCP −244 ms (−25 %). LCP element je u OBJE varijante isti
-     (`p.uvod-lead`), pa je to poređenje uporedivo. CLS 0 → 0,0245 (prag 0,1).
-     Na grubljem ograničenju (400 kb/s, 400 ms) FCP ide 2204 → 1580 ms (−28 %), a
-     LCP se ne razlikuje. Izgled je nepromijenjen: `cdp-layout.mjs` daje 1300 px →
-     3258 px i 390 px → 4647 px, sa 0 različitih elemenata (197 oba puta).
-
-     ISPRAVKA (07.10.2026, isti dan): prva verzija ovog komentara je tvrdila
-     „LCP −3,9 s (−63 %)". To je bio ARTEFAKT ALATA, ne nalaz. `serve.py` nije
-     gzipovao KORIJENSKI dokument — pravio se da radi, jer je provjeren samo na
-     `style.css`. Svako mjerenje je zato prenosilo 77 KB umjesto 25 KB, a to je
-     kažnjavalo varijantu sa `<link>`-om, jer ona ima duži kritični put. Kad je
-     server ispravljen, LCP dobitak je −244 ms, a ne −3,9 s. Na mreži su bajtovi
-     praktično isti (gzip: 8,8 + 16,8 KB naspram 25,5 KB) — dobitak je rund-trip.
-
-     CIJENA, svjesno prihvaćena: stil sada postoji i ovdje i u `404.html`, pa se
-     izmjena stila radi NA DVA MJESTA. `css/style.css` je obrisan.
-
-     P59 — fontovi su sada naši; definisani su u stilu ispod.
-     Google Fonts <link> je bio RENDER-BLOCKING (PSI: 750 ms) i vukao je lanac preko
-     dva tuđa domena, pa je uklonjen — zajedno sa `preconnect`-om, jer se odande više
-     ništa ne traži.
-
-     NEMA preload-a za fontove, i to je izmjereno, a ne pretpostavljeno. Tada je
-     spoljni `style.css` bio JEDINI render-blocking resurs; preload fontova ga
-     odlaže jer dele propusni opseg (izmjereno na 1,6 Mb/s / 150 ms, medijana
-     4 prolaza, 1300 px):
-
-         preload                      style.css   FCP     LCP
-         —                            626 ms      727     2180
-         sans-latin (28 KB)           729 ms      804     2640
-         serif-latin (120 KB)         798 ms      1034    1550
-         sans+serif (148 KB)          939 ms      1134    1818
-         sva četiri (305 KB)         1410 ms      1568    2580
-
-     Na mobilnom prikazu (390 px — ono što PSI mjeri) bez preload-a je bolje u OBJE
-     metrike: FCP 736 / LCP 1490, naspram 992 / 1532 sa serifom i 1112 / 1646 sa dva
-     fajla. CLS je zanemarljiv u svim varijantama (≤0,005; prag je 0,1), pa `swap`
-     ništa ne pomjera. Zato: fontove otkriva CSS, a prvo iscrtavanje ide prije njih.
-     (Ponoviti mjerenje: `node cdp-net.mjs --url <adresa> --throttle 1600,150 --timing`.) -->
+<meta name="twitter:description" content="Pregled vida, naočare i sočiva u Foči. Pregledi i u Nevesinju, Rogatici i Gacku.">
+<meta name="twitter:image" content="https://www.optikamila.com/img/og-optika-mila.png">
+<meta name="twitter:image:alt" content="Optika Mila Foča — pregled vida, naočare i sočiva. U Foči od 1997. godine.">
+<link rel="icon" href="/favicon.ico?v=2" sizes="any">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png?v=2">
 <style>
-/* =========================================================
-   Optika Mila Foča — v18
-   Moderan izgled sa blagim staroškolskim osjećajem.
-   Osnova: v3 (Source Serif 4 + Source Sans 3, topla papirna paleta,
-   arhivski okviri oko fotografija) — vraćeno nakon što je v4 otišao predaleko.
-   - nijedan font ispod 14px
-   - tap targeti: WCAG 2.5.8 (AA, 24x24) prolazi svuda; 44 px (AAA) drze svi
-     osim tri sitna linka — „Arhiva" u navigaciji je siroka 41 px, a dva linka
-     za atribuciju u podnozju su visoka 29 px. Sajt cilja AA, pa je tvrdnja
-     o 44 px svuda u v16 bila netacna (ispravljeno u v17).
-   - bez brojeva sekcija, bez optotipske tablice, bez citata
-   - v12: kontrast (--muted), telefon u mobilnom meniju, listanje u arhivi
-   - v13: usluge kao rešetka (V1) · podvlaka u navigaciji (V10) ·
-          sjena zaglavlja pri skrolu (V7) · mapa u okviru (V8) ·
-          mesingane oznake u Kontaktu (V9)
-   - v14: usluge bez bijele podloge (P26) · doktorkina fotografija
-          centrirana na telefonu (P27) · uvod bez viska rijeci na kraju reda
-          (P28) · ruta "Pregledi van Foce" uspravna pod 480px (P29)
-   - v15: podnozje u dvije kolone (P30) · pasusi bez visecih rijeci (P31) ·
-          galerija bez skoka unazad (P32) · kontakt poravnat po donjoj ivici
-          (P33) · polja usluga reaguju na prelaz misem (P34)
-   - v16: preuzeto iz `site-v3` posle recenzije (P35–P41):
-          polja usluga BEZ podizanja — podizanje probija okvir resetke (P35) ·
-          hero animacije (P36) · scroll reveal koji se sam otkriva bez JS-a (P37) ·
-          zoom u galeriji na prelaz misem (P38) · drop cap u uvodnom pasusu (P39) ·
-          ikone uz podatke u Kontaktu (P40) ·
-          `scroll-behavior` samo uz `prefers-reduced-motion:no-preference` (P41) ·
-          `text-wrap:balance` na pasuse u poljima usluga (P42)
-   - v17: generalno ciscenje posle citanja cijelog koda (P43–P47):
-          fokus-prsten u --forest, jer je brend zelena na papiru davala samo
-          2,05:1 i padala WCAG 1.4.11 na 27 od 33 elementa (P43) ·
-          pregled fotografija je fiksna pozornica, pa okvir vise ne skace
-          +480 px pri otvaranju (P44) ·
-          stilovi iz 404.html preseljeni iz `style=` u ovaj fajl (P45) ·
-          „Preskoči na sadržaj" je `fixed`, a ne `absolute` (P46) ·
-          `tabindex="-1"` na mapi, da Tab ne ulazi u Google-ov embed (P47) ·
-          uklonjena tri suvisna pravila (dupli `transition` na poljima usluga,
-          zasebno `.gal{overflow:hidden}`, `html{scroll-behavior:auto}`)
-   - v18: prva sekcija bez doktorkine fotografije (P48–P49) — portret uklonjen,
-          pa je desna kolona, koja je postojala SAMO zbog njega, dobila
-          „ličnu kartu": ime, zvanje i tekst o pregledima. Naslov je prešao
-          u LIJEVU kolonu (obje počinju na istoj visini). Time P27
-          (centriranje portreta na telefonu) prestaje da važi; `.portrait*`
-          pravila su obrisana.
-          Podloga karte ostaje PROVIDNA (P26: čisto belo je rezervisano za
-          arhivske okvire fotografija), a blok se izdvaja sjenkom — ona mijenja
-          kako blok stoji na strani, a ne od čega je napravljen. Prije toga je
-          izmjereno da je bez sjenke jedina vidljiva stvar bila ivica `--line`,
-          samo 1,35:1 prema papiru (P49).
-          Uz to: favicon set bez podloge (adaptivni SVG) i `?v=2` na
-          ikonicama, jer pregledači favicon keširaju tvrđe od strane.
-   ========================================================= */
-
-/* P59 — FONTOVI SU SADA NASI, NE SA GOOGLE-A.
-   Bilo je `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?...">`
-   u <head>. Taj zahtjev je RENDER-BLOCKING (PSI: 750 ms) i vukao je lanac preko
-   dva tudja domena: fonts.googleapis.com -> fonts.gstatic.com -> cetiri .woff2.
-   Sada se ISTA cetiri fajla koja je Google servirao nalaze u `fonts/` i ucitavaju
-   se sa naseg domena.
-
-   NEMA `preload`-a za fontove, i to je izmjereno a ne pretpostavljeno: `style.css`
-   je JEDINI render-blocking resurs, a preload fontova ga odlaze jer dele propusni
-   opseg (626 ms bez preload-a -> 939 ms sa dva -> 1410 ms sa cetiri, na 1,6 Mb/s).
-   Pomeranje `stylesheet` linka ispred preload tagova ne pomaze (939 vs 947 ms).
-   Na mobilnom prikazu je bez preload-a bolje i FCP i LCP; CLS je <=0,005 u svim
-   varijantama, pa `swap` nista ne pomjera. Detalji u komentaru u `index.html`.
-
-   Fajlovi su VARIJABILNI (jedan pokriva tezine 400-700 — provjereno: isti zahtjev
-   sa jednom tezinom daje DRUGI fajl), pa je `font-weight` opseg, a ne pojedinacna
-   vrijednost. Google za 400/600/700 servira ISTI fajl, pa tri tezine ne znace tri
-   fajla — zato su cetiri, koliko ih i PSI prijavljuje.
-   `unicode-range` je prepisan programski iz
-   https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400..700&family=Source+Serif+4:opsz,wght@8..60,400..700
-   (uz Chrome User-Agent), pa su subsetovi identicni onima koje je Google servirao.
-   Dokaz da je render isti: piksel-diff protiv starog sajta = 0 razlika van mape. */
 @font-face{
-  font-family:'Source Sans 3'; font-style:normal; font-weight:400 700;
-  font-display:swap;
+  font-family:'Source Sans 3'; font-style:normal; font-weight:400 700; font-display:swap;
   src:url('/fonts/source-sans-3-latin.woff2') format('woff2');
-  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face{
-  font-family:'Source Sans 3'; font-style:normal; font-weight:400 700;
-  font-display:swap;
+  font-family:'Source Sans 3'; font-style:normal; font-weight:400 700; font-display:swap;
   src:url('/fonts/source-sans-3-latin-ext.woff2') format('woff2');
-  unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
 @font-face{
-  font-family:'Source Serif 4'; font-style:normal; font-weight:400 700;
-  font-display:swap;
+  font-family:'Source Serif 4'; font-style:normal; font-weight:400 700; font-display:swap;
   src:url('/fonts/source-serif-4-latin.woff2') format('woff2');
-  unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
 }
 @font-face{
-  font-family:'Source Serif 4'; font-style:normal; font-weight:400 700;
-  font-display:swap;
+  font-family:'Source Serif 4'; font-style:normal; font-weight:400 700; font-display:swap;
   src:url('/fonts/source-serif-4-latin-ext.woff2') format('woff2');
-  unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF;
 }
-
 :root{
-  --ink:      #16241D;
-  --forest:   #1C3F33;
-  --green:    #3FC380;
-  --brass:    #A87B39;
-  /* P20 — --brass je DEKORATIVNA (crtica iznad naslova sekcije, crtica u ličnoj
-     karti doktorice, mesingane oznake u Kontaktu): na papiru
-     daje 3,44:1, što je za liniju u redu, ali kao TEKST pada WCAG AA (traži 4,5:1).
-     Zato za tekst postoji --brass-deep: 4,96:1 na papiru, 4,58:1 na --paper-2. */
-  --brass-deep:#8A6229;
-
-  --paper:    #F7F4EE;
-  --paper-2:  #F0EBE2;
-
-  --text:     #16241D;
-  --text-soft:#4B5B52;
-  /* P13 — bilo #78847C: davalo je 3,55:1 na papiru i 3,28:1 na --paper-2,
-     ispod WCAG AA (4,5:1). Sada 4,89:1 / 4,52:1 — isti ton, za nijansu tamniji. */
-  --muted:    #606E64;
-
-  --line:     #DCD3C4;
-
-  --serif:    'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --sans:     'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-  --wrap:     1160px;
-  --r:        3px;
+  --ink:#16241D; --forest:#1C3F33; --green:#3FC380;
+  --brass:#A87B39; --brass-deep:#8A6229;
+  --paper:#F7F4EE; --paper-2:#F0EBE2; --text-soft:#4B5B52; --muted:#606E64; --line:#DCD3C4;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'Source Sans 3',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  --wrap:1160px; --r:3px; --header-height:76px;
 }
-
 *,*::before,*::after{ box-sizing:border-box; }
-
-html{ -webkit-text-size-adjust:100%; }
-/* P41 (v16) — glatko skrolovanje je bilo na `html` bezuslovno, pa ga je dobijao
-   i onaj ko je u sistemu tražio manje kretanja. Sada samo uz `no-preference`. */
+html{ -webkit-text-size-adjust:100%; scrollbar-gutter:stable; }
 @media (prefers-reduced-motion:no-preference){ html{ scroll-behavior:smooth; } }
-
 body{
-  margin:0;
-  background-color:var(--paper);
-  /* P7 — blago papirno zrno (inline SVG, bez dodatnog HTTP zahtjeva) */
+  margin:0; background-color:var(--paper); color:var(--ink);
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.055'/%3E%3C/svg%3E");
-  color:var(--text);
-  font-family:var(--sans);
-  font-size:17px;
-  line-height:1.66;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
+  font-family:var(--sans); font-size:17px; line-height:1.66; -webkit-font-smoothing:antialiased;
 }
-
-/* P8 — selekcija teksta u brend zelenoj (sistemska plava je jedina hladna boja na sajtu) */
+body.dialog-open{ overflow:hidden; }
 ::selection{ background:rgba(63,195,128,.32); color:var(--ink); }
-
-h1,h2,h3{
-  font-family:var(--serif);
-  font-weight:600;
-  line-height:1.16;
-  letter-spacing:-.008em;
-  color:var(--ink);
-  margin:0 0 .5em;
-}
+h1,h2,h3{ font-family:var(--serif); font-weight:600; line-height:1.16; letter-spacing:-.008em; margin:0 0 .5em; }
 h1{ font-size:clamp(2.1rem,4.6vw,3.5rem); }
 h2{ font-size:clamp(1.6rem,3.1vw,2.25rem); }
 h3{ font-size:1.22rem; }
-
-/* P31 — pasusi bez „visećih" riječi. Izmjereno na stvarnoj strani: na tri mjesta
-   je zadnji red imao samo jednu riječ („oka." 30 px na 768, „cijenama." 65 px i
-   „s.p." 22 px na 390). Pregledač pomjeri lom SAMO kad bi u zadnjem redu ostala
-   jedna riječ — zato ovo popravlja tri slučaja, a pasuse sa po dvije-tri riječi
-   u zadnjem redu (113 / 120 / 161 px) ostavlja kako jesu. Visina nijednog pasusa
-   se ne mijenja (provjereno prije i poslije). `.lead` je ovo imao od P28. */
 p{ margin:0 0 1.1em; text-wrap:pretty; }
 a{ color:var(--forest); text-decoration:none; }
-/* P1/P8 — podvlaka linka u brend zelenoj: vidi se, a ne viče */
-a:hover{
-  text-decoration:underline; text-underline-offset:3px;
-  text-decoration-color:var(--green); text-decoration-thickness:2px;
-}
-
+a:hover{ text-decoration:underline; text-underline-offset:3px; text-decoration-color:var(--green); text-decoration-thickness:2px; }
 img{ max-width:100%; height:auto; display:block; }
-
+button{ font:inherit; }
+[hidden]{ display:none !important; }
 .wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding:0 28px; }
-
-/* P1 — fokus prsten u brend zelenoj */
-/* P43 (v17) — BOJA PRSTENA JE MORALA DA SE PROMIJENI. Izmjereno u stvarnom
-   renderu: brend zelena #3FC380 daje na papiru 2,05:1, a WCAG 1.4.11 traži
-   najmanje 3:1 za oznaku stanja fokusa. Padalo je 27 od 33 fokusabilna
-   elementa (1,90:1 na --paper-2, 2,05:1 na papiru, 2,25:1 na belom okviru).
-
-   Kljucno: prsten stoji `outline-offset:3px` IZVAN elementa, pa se ne mjeri
-   prema podlozi elementa nego prema podlozi RODITELJA. Zato zeleni prsten pada
-   i na `.btn-solid` i na `.header-call`: sam element je taman (5,16:1), ali
-   prsten lebdi nad papirom (2,05:1).
-
-   Sada je osnovni prsten --forest: 10,58:1 na papiru, 9,78:1 na --paper-2,
-   11,6:1 na belom arhivskom okviru. Brend zelena ostaje tamo gdje JESTE
-   prolazila — na tamnim podlogama: podnozje (--ink, 7,15:1) i pregled
-   fotografija (tamna podloga, ~7:1). */
 :focus-visible{ outline:3px solid var(--forest); outline-offset:3px; border-radius:2px; }
-.site-footer a:focus-visible,
-.lightbox :focus-visible{ outline-color:var(--green); }
-
-/* P46 (v17) — bilo `position:absolute`, pa je „Preskoči na sadržaj" stajao na
-   vrhu DOKUMENTA, a ne ekrana. Ko skroluje pa onda pritisne Tab, fokusirao je
-   link koji je odavno odskrolovan — dakle nevidljiv. Sa `fixed` je uvijek uz
-   gornju ivicu ekrana, gdje ga korisnik i traži. */
-.skip-link{
-  position:fixed; left:-9999px; top:0; z-index:999;
-  background:var(--forest); color:var(--paper);
-  padding:12px 22px; font-size:15px;
-}
+.site-footer a:focus-visible,.lightbox :focus-visible{ outline-color:var(--green); }
+.skip-link{ position:fixed; left:-9999px; top:0; z-index:999; background:var(--forest); color:var(--paper); padding:12px 22px; font-size:15px; }
 .skip-link:focus{ left:0; }
+section[id]{ scroll-margin-top:calc(var(--header-height) + 16px); }
 
-/* ============ ZAGLAVLJE ============ */
-/* P14 — prozirnost spuštena sa .95 na .86: pri .95 se zamućenje nije videlo,
-   pa je trošilo snagu uređaja bez ikakvog efekta. Sada se sadržaj nazire u pokretu. */
+
 .site-header{
-  position:sticky; top:0; z-index:100;
-  background:rgba(247,244,238,.86);
-  -webkit-backdrop-filter:saturate(150%) blur(10px);
-  backdrop-filter:saturate(150%) blur(10px);
-  border-bottom:1px solid var(--line);
-  transition:box-shadow .2s ease;
+  position:sticky; top:0; z-index:100; background:rgba(247,244,238,.92);
+  -webkit-backdrop-filter:saturate(150%) blur(10px); backdrop-filter:saturate(150%) blur(10px);
+  border-bottom:1px solid var(--line); transition:box-shadow .2s ease;
 }
-/* P23 (V7) — na samom vrhu strane zaglavlje nema šta da zamuti, pa se stapalo
-   sa papirom i nije se videlo da je zaglavlje. Tek kad strana krene nadole
-   dobija blagu sjenu i time se odvaja od sadržaja koji prolazi ispod njega.
-   Stanje piše skripta (data-scrolled), a ne :hover — tako radi i na dodir. */
-.site-header[data-scrolled="true"]{
-  box-shadow:0 3px 14px rgba(22,36,29,.10);
-}
+.site-header[data-scrolled="true"]{ box-shadow:0 3px 14px rgba(22,36,29,.08); }
 .header-inner{ display:flex; align-items:center; gap:20px; min-height:76px; }
-
-/* P3 — logotip: tačno oko sa prvog sajta (Font Awesome 4.7 fa-eye), uz ime */
 .brand{ display:flex; align-items:center; gap:13px; flex:0 0 auto; min-height:44px; }
 .brand:hover{ text-decoration:none; }
 .brand-mark{ width:38px; height:27px; flex:0 0 auto; color:var(--forest); }
-.brand-txt{ display:flex; flex-direction:column; line-height:1.16; }
-.brand-name{
-  font-family:var(--serif); font-size:22px; font-weight:600;
-  color:var(--ink); letter-spacing:-.01em;
-}
+.brand-txt{ display:flex; flex-direction:column; line-height:1.16; min-width:0; }
+.brand-name{ font-family:var(--serif); font-size:22px; font-weight:600; letter-spacing:-.01em; }
 .brand-sub{ font-size:14px; color:var(--muted); font-weight:600; }
-
 .site-nav{ margin-left:auto; }
-.site-nav ul{ display:flex; align-items:center; gap:14px; list-style:none; margin:0; padding:0; }
-.site-nav a{
-  display:flex; align-items:center; min-height:44px; padding:0 14px;
-  font-size:15px; font-weight:600; color:var(--text-soft);
-  border-radius:var(--r); transition:color .15s, background .15s, box-shadow .15s;
-}
-/* P16 — telefon u mobilnom meniju. Na širokim ekranima ga već nosi .header-call,
-   pa se ovdje skriva; pojavljuje se tek kad zaglavlje ostane bez broja (<860px).
-   Mora biti `.site-nav .nav-phone`, a ne samo `.nav-phone`: pravilo
-   `.site-nav a{display:flex}` je specifičnije (0,1,1 > 0,1,0) i inače pobjedi,
-   pa se broj na desktopu prikazivao dva puta. */
+.site-nav ul{ display:flex; align-items:center; gap:8px; list-style:none; margin:0; padding:0; }
+.site-nav a{ display:flex; align-items:center; min-height:44px; padding:0 12px; font-size:15px; font-weight:600; color:var(--text-soft); white-space:nowrap; }
+.site-nav a:hover,.site-nav a:focus-visible{ color:var(--forest); text-decoration:underline; text-decoration-color:var(--green); text-underline-offset:6px; }
 .site-nav .nav-phone{ display:none; }
-/* P1 — brend zelena označava interakciju */
-/* P21 (V10) — bila je puna zelena traka preko cijele stavke (inset box-shadow) plus
-   siva podloga. Sada samo tanka podvlaka ispod teksta: manje šuma, a stavka se
-   i dalje jasno označi. Fokus i dalje ima svoj okvir (globalni :focus-visible). */
-.site-nav a:hover,
-.site-nav a:focus-visible{
-  color:var(--forest); background:transparent; box-shadow:none;
-  text-decoration:underline;
-  text-decoration-color:var(--green);
-  text-decoration-thickness:2px;
-  text-underline-offset:6px;
-}
-
-.header-call{
-  display:inline-flex; align-items:center; min-height:44px; padding:0 20px;
-  background:var(--forest); color:var(--paper);
-  font-size:15px; font-weight:700;
-  border-radius:var(--r); white-space:nowrap; flex:0 0 auto;
-  transition:background .15s;
-}
+.header-call{ display:inline-flex; align-items:center; min-height:44px; padding:0 20px; background:var(--forest); color:var(--paper); font-size:15px; font-weight:700; border-radius:var(--r); white-space:nowrap; flex:0 0 auto; transition:background .15s; }
 .header-call:hover{ background:var(--ink); text-decoration:none; }
-
-.nav-toggle{
-  display:none; align-items:center; gap:9px;
-  min-height:46px; padding:0 16px;
-  background:transparent; color:var(--ink);
-  border:1px solid var(--line); border-radius:var(--r);
-  font-family:var(--sans); font-size:15px; font-weight:600; cursor:pointer;
-}
+.brand + .header-call{ margin-left:auto; }
+.nav-toggle{ display:none; align-items:center; justify-content:center; gap:9px; min-height:46px; padding:0 14px; margin-left:auto; background:transparent; color:var(--ink); border:1px solid var(--line); border-radius:var(--r); font-size:15px; font-weight:600; cursor:pointer; flex:0 0 auto; }
 .nav-toggle-bars{ display:flex; flex-direction:column; gap:4px; width:19px; }
 .nav-toggle-bars i{ display:block; height:1.5px; background:currentColor; }
 
-/* ============ DUGMAD ============ */
-.btn{
-  display:inline-flex; align-items:center; justify-content:center;
-  min-height:52px; padding:0 30px;
-  font-family:var(--sans); font-size:16px; font-weight:700;
-  border-radius:var(--r);
-  border:1.5px solid transparent; cursor:pointer;
-  transition:background .16s, color .16s, border-color .16s;
-}
+.btn{ display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:0 28px; font-size:16px; font-weight:700; border-radius:var(--r); border:1.5px solid transparent; cursor:pointer; transition:background .16s,color .16s,border-color .16s; }
 .btn:hover{ text-decoration:none; }
 .btn-solid{ background:var(--forest); color:var(--paper); }
 .btn-solid:hover{ background:var(--ink); }
@@ -386,677 +123,187 @@ img{ max-width:100%; height:auto; display:block; }
 .btn-wide{ width:100%; }
 .btn-ico{ flex:0 0 auto; margin-right:10px; }
 
-/* ============ UVOD (očna kuća + doktorica — jedan kompaktan blok) ============ */
-/* P11 — unutrašnji ritam, nivo 2: bilo je clamp(38px,4.6vw,64px) / clamp(46px,5.2vw,76px) */
-.hero{ padding:clamp(30px,3.6vw,48px) 0 clamp(36px,4vw,56px); }
+.hero{ padding:clamp(28px,3.4vw,44px) 0 clamp(30px,3.5vw,44px); }
+.hero-grid{ display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:28px clamp(30px,4vw,58px); align-items:center; }
+.hero h1{ margin:0 0 .4em; }
+.uvod-lead{ font-size:clamp(1.06rem,1.6vw,1.18rem); color:var(--text-soft); max-width:58ch; margin:0 0 1.1em; }
+.uvod-actions{ display:flex; flex-wrap:wrap; gap:12px; margin:0; }
+.uvod-karta{ border-left:2px solid var(--forest); padding:6px 0 6px 24px; }
+.karta-ime{ font-size:clamp(1.3rem,2vw,1.5rem); color:var(--forest); margin:0 0 12px; }
+.uvod-karta p{ color:var(--text-soft); max-width:43ch; margin:0; }
+.hero-practical{ grid-column:1 / -1; display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:20px clamp(30px,4vw,58px); padding-top:20px; border-top:1px solid var(--line); margin:0; }
+.hero-practical dt{ font-size:14px; color:var(--muted); margin-bottom:2px; }
+.hero-practical dd{ margin:0; font-size:16px; font-weight:600; }
+.hero-hours{ display:grid; grid-template-columns:max-content max-content; gap:2px 16px; }
+.hero-hours span{ white-space:nowrap; }
+.hero-time{ font-variant-numeric:tabular-nums; }
 
-/* P48 (v18) — doktorka ne daje fotografiju, pa je portret uklonjen, a desna
-   kolona (koja je postojala SAMO zbog njega) dobila je „ličnu kartu".
-   Naslov je prešao U LIJEVU KOLONU. Izmjereno na 901 / 940 / 1000 / 1180 /
-   1300 px: naslov ostaje u JEDNOM redu (tekst 294–383 px u koloni 541–549 px),
-   obje kolone počinju na istoj visini, a razlika njihovih visina je 48–86 px.
-   Prije (naslov preko obje kolone) lijevo je ostajalo 572 px praznog prostora,
-   a razlika visina bila je 136 px. Zato 1,06 : 1, a ne 1,35 : 0,65. */
-.hero-grid{
-  display:grid;
-  grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);
-  column-gap:clamp(30px,4vw,58px);
-  align-items:start;
-}
-
-.hero h1{ margin:0 0 .62em; max-width:24ch; }
-
-.uvod-lead{
-  font-size:clamp(1.06rem,1.6vw,1.18rem);
-  color:var(--text-soft);
-  max-width:58ch;
-  margin:0 0 1.2em;
-}
-/* P39 (v16) — uvodni pasus počinje krupnim inicijalom. Izmjereno: NE mijenja
-   raspored — visina strane je identična prije i poslije (3400 / 4088 / 4223 /
-   4923 / 4960 px na 1300 / 900 / 768 / 520 / 390 px). Inicijal je visok ~2 reda,
-   pa se uklapa u najkraći uvod koji se na ovom sajtu pojavljuje (3 reda). */
-.uvod-lead::first-letter{
-  font-family:var(--serif);
-  font-size:3.2em;
-  float:left;
-  line-height:.82;
-  margin:.05em .14em 0 0;
-  color:var(--forest);
-  font-weight:600;
-}
-.uvod-actions{ display:flex; flex-wrap:wrap; gap:12px; margin:0 0 1.6em; }
-/* dugmad su posljednje u lijevoj koloni — donja margina je bila za red ispod */
-.uvod-levo .uvod-actions{ margin-bottom:0; }
-
-/* ---- Lična karta doktorice (P48, dopunjeno u P49) ----
-   P26 je već odlučila da `#fff` polje na toplom papiru odskače — „bijelo je na
-   sajtu rezervisano samo za arhivske okvire fotografija". P48 je kartu zato
-   ostavila BEZ podloge. IZMJERENO poslije: jedina vidljiva stvar tada je bila
-   ivica `--line` #DCD3C4, a ona prema papiru daje samo **1,35:1** — blok je
-   ostao preslab.
-   P49 je izmjerila šest načina da se izdvoji (bez obrade · sjenka · topla
-   podloga + sjenka · dvostruki okvir · lijeva traka · mesingani okvir + sjenka)
-   i izabrana je SJENKA BEZ PODLOGE:
-     · podloga ostaje providna — drži se P26 doslovno, i kroz kartu se vidi isti
-       papir i njegovo zrno kao svuda na strani;
-     · sjenka je ista koju je imao portret — blok se PODIŽE, a ne svijetli.
-   Ključna razlika: sjenka mijenja KAKO blok stoji na strani, a podloga od čega
-   je napravljen. Za „malo ga izdvojiti" dovoljna je prva. */
-.uvod-karta{
-  border:1px solid var(--line);
-  padding:22px 24px 24px;
-  background:none;
-  box-shadow:0 10px 26px rgba(22,36,29,.10), 0 0 60px rgba(63,195,128,.06);
-}
-/* mesingana crtica — isti motiv kao iznad naslova sekcije (P2) */
-.uvod-karta::before{
-  content:""; display:block; width:38px; height:2px;
-  background:var(--brass); margin:0 0 16px;
-}
-/* P50 — naslovi u karti posle uklanjanja reda o zvanju.
-   Red „Doktor medicine — optometrija" je uklonjen jer je bio suvišan, ali je sa
-   sobom odnio i razdjelnik i razmak. IZMJERENO poslije: `.karta-ime` 18,88 px i
-   `.uvod-text h3` 16,96 px — OBA serif, OBA `font-weight:600`, OBA `--ink`, sa
-   samo **3 px** razmaka. To se čita kao dva reda jednog naslova, ne kao naslov
-   i podnaslov.
-   Izabrana je varijanta **B** (od šest ponudjenih): ime prelazi u `--forest` —
-   boju koja je u karti već prisutna kroz linkove, a na papiru daje **10,58:1**,
-   dakle najsigurniji akcenat na sajtu — i ispod njega se vraća razdjelnik koji
-   je uklonjeni red nosio. Time se naslov i podnaslov razlikuju i PO BOJI i po
-   veličini (20,8 prema 17,6 px), a razmak raste sa 3 na 15 px.
-   Ostalo izmjereno i odbačeno: podnaslov u `--forest` (to je boja LINKA —
-   naslov bi ličio na vezu); ime u `--brass-deep` (4,96:1, pa bi naslov bio
-   SLABIJI od svog teksta koji je 6,56:1); podnaslov bez serifa (varijanta F —
-   radilo je, ali uvodi drugu familiju u naslove).
-   Podnaslov je 1,1rem, a ne 1rem: IZMJERENO je da 1,06rem daje 16,96 px prema
-   pasusu od 17,00 px, pa je na širokim ekranima podnaslov manji od svog teksta.
-   Na 1,1rem je 17,6 px — veći od pasusa, a ispod imena (20,8 px). */
-.karta-ime{
-  font-family:var(--serif); font-size:1.30rem; font-weight:600;
-  letter-spacing:-.006em; color:var(--forest); margin:0 0 .70em;
-  padding-bottom:13px; border-bottom:1px solid var(--line);
-}
-
-.uvod-text h3{
-  font-family:var(--serif); font-size:1.1rem; letter-spacing:-.004em;
-  margin:0 0 .55em;
-}
-.uvod-text p{ color:var(--text-soft); margin:0 0 .75em; }
-.uvod-text p:last-child{ margin-bottom:0; }
-
-/* ============ HERO ANIMACIJE ============ */
-/* P36 (v16) — sadržaj uvoda ulazi postepeno, umjesto da sve stoji odmah.
-   Samo `opacity` i `transform` — nijedno ne pokreće raspoređivanje, pa nema CLS-a.
-   Cijelo pravilo je u `prefers-reduced-motion:no-preference`: ko je tražio manje
-   kretanja ne dobija ni animaciju.
-
-   ŠTA ANIMACIJA RADI LCP-u (izmjereno, P48) — dvije stvari, i NISU iste:
-     · <img> koji počinje na `opacity:0` Chrome izbacuje iz LCP-a POTPUNO.
-       Dokaz: strana kojoj je jedini sadržaj velika slika (1200×630 = 756 000 px²).
-       Bez animacije LCP je `img` u 52 ms; sa animacijom je LCP PRAZAN spisak.
-       Zato `.portrait` (113 854 px²) nikada nije bio u ovoj listi (P36).
-     · TEKST koji počinje na `opacity:0` se NE izbacuje — samo KASNI.
-       Dokaz na ovoj strani: `.uvod-lead` (64 735 px²) je LCP i sa animacijom
-       (512 ms) i bez nje (332 ms). Animacija ga ne sakriva, ali ga pomjera
-       ~180 ms kasnije.
-   P48: portreta više nema, pa je najveći element uvoda sada `.uvod-lead` — i on
-   JESTE animiran. LCP je 512 ms, daleko unutar „dobrog" (< 2,5 s), pa je ostalo
-   kako je odobreno. Ako zatreba brže: izostaviti `.uvod-lead` iz liste ispod
-   (dobija se 332 ms) — to je jedina izmjena koja je potrebna. */
-@media (prefers-reduced-motion:no-preference){
-  @keyframes fadeSlideUp{
-    from{ opacity:0; transform:translateY(24px); }
-    to  { opacity:1; transform:translateY(0); }
-  }
-  .hero h1        { animation:fadeSlideUp .7s ease-out both; }
-  .uvod-lead      { animation:fadeSlideUp .7s .1s ease-out both; }
-  .uvod-actions   { animation:fadeSlideUp .7s .2s ease-out both; }
-  /* P48 — animira se CIJELA karta, a ne samo njen tekst: da se ne vidi okvir
-     sa imenom dok unutrašnji pasusi još ne postoje. */
-  .uvod-karta     { animation:fadeSlideUp .7s .3s ease-out both; }
-}
-
-/* ============ SCROLL REVEAL ============ */
-/* P37 (v16) — sekcije ulaze pri skrolovanju umjesto da sve stoji odmah.
-   Skripta dodaje `.is-visible`; sav izgled je ovdje.
-
-   ZAŠTO `html.js`, A NE SAMO `.reveal`: da bi se sadržaj sakrio, mora se znati
-   da JavaScript RADI. Kada je pravilo pisalo samo `.reveal{opacity:0}`, strana je
-   bez JavaScripta gubila oko 60 % sadržaja — izmjereno: 8 od 8 blokova nevidljivo
-   (sva četiri <h2>, rešetka usluga, galerija, kontakt), a oko njih ostaju
-   osiročeni pasusi bez naslova.
-
-   `<noscript>` ovo NE rješava do kraja: on se aktivira samo kad je skriptovanje
-   ISKLJUČENO u pregledaču. Ako se `js/script.js` ne učita (mreža, blokator,
-   greška u drugoj skripti), `<noscript>` se ne iscrtava i sadržaj ostaje skriven.
-   Zato klasu `js` stavlja TINY inline skripta u <head>, prije prvog iscrtavanja:
-     <script>document.documentElement.classList.add('js')</script>
-   Ako ta skripta ne prođe (npr. CSP), klase nema → `.reveal` se NE skriva →
-   sadržaj je vidljiv. Kvar ide na stranu vidljivosti, nikad na stranu prazne strane. */
-html.js .reveal{
-  opacity:0; transform:translateY(20px);
-  transition:opacity .6s ease, transform .6s ease;
-}
-html.js .reveal.is-visible{
-  opacity:1; transform:translateY(0);
-}
-@media (prefers-reduced-motion:reduce){
-  html.js .reveal{ opacity:1; transform:none; transition:none; }
-}
-
-/* ============ SEKCIJE ============ */
-/* P10 — veći razmak između sekcija nego unutar njih: stranica „diše" u ciklusima */
-/* P12 — nivo 2: bilo clamp(72px,8.5vw,124px) → 244 px između sekcija bilo je previše */
-.band{ padding:clamp(52px,6vw,88px) 0; }
+.band{ padding:clamp(44px,5.2vw,72px) 0; }
 .band-tint{ background:var(--paper-2); }
-section[id]{ scroll-margin-top:92px; }
+.band h2{ margin-bottom:28px; }
+.band h2::after{ content:''; display:block; width:56px; height:2px; margin-top:14px; background:var(--brass); }
+.lead{ font-size:clamp(1.04rem,1.7vw,1.16rem); color:var(--text-soft); max-width:62ch; }
+.band p a,.fact dd a{ text-decoration:underline; text-decoration-color:var(--green); text-decoration-thickness:2px; text-underline-offset:3px; }
+.regional{ padding:clamp(30px,3.8vw,48px) 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.regional h2{ color:var(--forest); margin-bottom:10px; }
+.regional .lead{ margin-bottom:22px; }
+.route{ list-style:none; display:flex; flex-wrap:wrap; align-items:center; max-width:740px; row-gap:20px; margin:0; padding:0; }
+.route li{ display:flex; align-items:center; font-family:var(--serif); font-size:clamp(1.18rem,2.2vw,1.55rem); font-weight:600; }
+.route li:not(:last-child)::after{ content:''; width:clamp(32px,8vw,96px); height:1px; margin:0 clamp(13px,2vw,24px); background:repeating-linear-gradient(90deg,var(--line) 0 5px,transparent 5px 11px); }
+.dot{ width:11px; height:11px; border-radius:50%; border:2px solid var(--green); margin-right:13px; flex:0 0 auto; }
+.route-note{ margin:20px 0 0; font-size:1.02rem; color:var(--text-soft); max-width:76ch; }
+.route-note a{ white-space:nowrap; font-weight:700; }
 
-/* P2 — mesingani uvodni znak iznad naslova sekcije (materijal ove profesije) */
-.band h2::before{
-  content:''; display:block; width:34px; height:2px;
-  background:var(--brass); margin-bottom:14px;
-}
-
-/* P11 — unutrašnji ritam, nivo 2 (bilo clamp(38px,4.4vw,58px)) */
-.band h2{
-  padding-bottom:.34em;
-  border-bottom:1px solid var(--line);
-  margin-bottom:clamp(28px,3.2vw,42px);
-}
-
-/* P28 (ispravka 1) — uvod se lomio tačno između „u" i „Domovima zdravlja:", pa je
-   prijedlog „u" ostajao da visi na kraju reda. Izmjereno: uvod je širok 572 px
-   (62 znaka), a rečenica 635 px. Uz `u&nbsp;Domovima` (veza u HTML-u) i
-   `text-wrap:pretty` browser sam izbjegne ovakve „viseće" riječi. */
-.lead{
-  font-size:clamp(1.04rem,1.7vw,1.16rem); color:var(--text-soft); max-width:62ch;
-  text-wrap:pretty;
-}
-
-/* P8 — linkovi u tekstu: stalna podvlaka u brend zelenoj (link se vidi i bez boje) */
-.band p a, .uvod-text a, .fact dd a{
-  text-decoration:underline;
-  text-decoration-color:var(--green);
-  text-decoration-thickness:2px;
-  text-underline-offset:3px;
-}
-
-/* ============ VAN FOČE ============ */
-/* P11 — nivo 2 (bilo clamp(30px,4vw,46px)) */
-.route{
-  list-style:none; margin:clamp(22px,2.8vw,32px) 0 0; padding:0;
-  display:flex; flex-wrap:wrap; align-items:center; row-gap:20px;
-}
-.route li{
-  display:flex; align-items:center;
-  font-family:var(--serif); font-weight:600;
-  font-size:clamp(1.18rem,2.2vw,1.55rem); color:var(--ink);
-}
-.route li:not(:last-child)::after{
-  content:''; width:clamp(32px,8vw,96px); height:1px; margin:0 clamp(13px,2vw,24px);
-  background:repeating-linear-gradient(90deg, var(--line) 0 5px, transparent 5px 11px);
-}
-.dot{
-  width:11px; height:11px; border-radius:50%;
-  border:2px solid var(--green); margin-right:13px; flex:0 0 auto;
-}
-/* P11 — nivo 2 (bilo clamp(28px,3.4vw,40px)) */
-.route-note{ margin:clamp(20px,2.4vw,28px) 0 0; font-size:1.02rem; color:var(--text-soft); }
-.route-note a{ font-weight:700; }
-
-/* P29 (ispravka 2) — na telefonu se ruta lomila poslije „Rogatica": isprekidana
-   spojnica bi ostala da visi na kraju reda, a „Gacko" bi palo samo u drugi red.
-   Sada se pod 480 px ruta okreće uvis, a isprekidana linija ide niz kroz tačke —
-   tako se ruta čita bolje nego vodoravno i nema šta da visi.
-
-   Granica je IZMJERENA, ne procjenjena. Ruta traži 405–409 px:
-     na 450 px ima 410 px → staje u jedan red (visina 31 px)
-     na 440 px ima 400 px → lomi se (visina 83 px)
-   Lom nastaje oko 446 px, pa je uzeta granica 480 px — pokriva sve telefone
-   (najširi je 430 px) uz malu rezervu, a ne dira tablet ni desktop.
-
-   Linija ide od 21 px i duga je calc(100% - 31px) — takođe izmjereno: tačke su
-   na cx=5,5 px, prva počinje na 21,2 px, posljednja se završava na 143,8 px,
-   a visina liste je 154 px. */
-@media (max-width:480px){
-  .route{
-    display:block;
-    background-image:repeating-linear-gradient(180deg, var(--line) 0 5px, transparent 5px 11px);
-    background-repeat:no-repeat;
-    background-position:5px 21px;
-    background-size:1px calc(100% - 31px);
-  }
-  .route li{ padding-bottom:30px; }
-  .route li:last-child{ padding-bottom:0; }
-  .route li:not(:last-child)::after{ display:none; }
-}
-
-/* ============ USLUGE ============ */
-/* P22 (V1) — bila je lista redova (naziv levo, opis desno) sa linijom između.
-   Sada rešetka 2×2 sa vlaskom između polja i malim mesinganim brojem u svakom.
-   Ivice se ne pišu pojedinačno nego preko :nth-child, pa raspored ostaje tačan
-   i ako se broj usluga promijeni.
-   P26 — podloga je bila #fff i blok je odskakao od ostatka strane: bijelo polje
-   na toplom papiru. Sada je podloga providna, pa se kroz rešetku vidi isti
-   papir i njegova tekstura kao svuda; okvir i vlasi ostaju da nose strukturu.
-   Bijelo je na sajtu rezervisano samo za arhivske okvire fotografija. */
-.services{
-  list-style:none; margin:0; padding:0;
-  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
-  border:1px solid var(--line);
-}
-.services li{
-  padding:clamp(18px,2.4vw,26px) clamp(18px,2.6vw,28px);
-  border-right:1px solid var(--line);
-  border-bottom:1px solid var(--line);
-  transition:background .18s ease;   /* P34 */
-}
+.services{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.services li{ padding:clamp(20px,2.4vw,26px) clamp(20px,2.6vw,28px); border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
 .services li:nth-child(2n){ border-right:0; }
 .services li:nth-last-child(-n+2){ border-bottom:0; }
-/* broj je oznaka, ne sadržaj — 14px je najmanje što sajt dozvoljava */
-.svc-n{
-  display:block; margin-bottom:6px;
-  font-family:var(--sans); font-size:14px; font-weight:700;
-  letter-spacing:.14em; color:var(--brass-deep);
-  font-variant-numeric:tabular-nums;
-}
-.services h3{ margin:0 0 5px; }
-/* P42 (v16) — `text-wrap:balance` SAMO na pasuse u poljima usluga.
-   Ovo su jedini pasusi na sajtu koji su kratki (2–3 reda) i stoje u uskim
-   kolonama, pa se `pretty` iz P31 na njima gotovo ne vidi. `balance` izjednači
-   redove i vidi se na SVAKOJ širini, a pošto su pasusi kratki ne može da
-   napravi „blok" kao što bi na četvororednom uvodnom pasusu.
-   Specifičnost `.services p` (0,1,1) pobeđuje `p` (0,0,1), pa `balance` tu
-   zamenjuje `pretty`; ostatak sajta zadržava `pretty`. */
-.services p{ margin:0; color:var(--text-soft); text-wrap:balance; }
+.services h3{ margin:0 0 8px; }
+.services p{ margin:0; color:var(--text-soft); text-wrap:pretty; }
 
-/* P34 — polja usluga su bila jedini dio strane koji na prelaz mišem ne radi ništa
-   (navigacija, fotografije i mapa jesu). Mijenja se samo podloga i boja broja —
-   bez pomjeranja i bez promjene veličine, pa se raspored ne mijenja.
-   U `@media (hover:hover)` je namjerno: na uređajima bez miša `:hover` se
-   zadrži poslije dodira, pa bi polje ostalo obojeno bez razloga.
-   `:focus-within` NIJE dodavan — u polju nema ničega što može da primi fokus
-   (samo naslov i tekst), pa to pravilo nikada ne bi opalilo. */
-/* P35 (v16) — PODIZANJE POLJA JE ODBIJENO, sa izmjerenim razlogom.
-   `transform:translateY(-3px)` na polju unutar rešetke SA IVICOM ne radi:
-   polje leži 1 px unutar ivice `.services`, pa se podigne 2 px IZNAD nje i
-   njegova podloga `--paper-2` prekrije gornju ivicu. Okvir se vidi lijevo i
-   desno od polja, a preko njega nestane. Vanjska `box-shadow` ima isti problem
-   (blur izlazi iz okvira). Isto važi i za `overflow:hidden` na `.services`:
-   tada se polje odsiječe na vrhu i ostane praznina na dnu.
-   Zato ostaje samo promjena podloge i boje broja — bez pomjeranja. */
-@media (hover:hover){
-  .services li:hover{ background:var(--paper-2); }
-  .services li:hover .svc-n{ color:var(--forest); }
-}
 
-/* ============ ARHIVA ============ */
-/* P32 — broj kolona se prije vraćao UNAZAD kad se prozor širi. Izmjereno:
-     800 px → 4 kolone (174 px) · 860 px → 4 (189 px) · 861 px → 3 (255 px) ·
-     950 px → 4 · 1000 px → 5.
-   Na 860 px su četiri sličice; prozor proširen za JEDAN piksel davao je tri —
-   sličice skoče sa 189 na 255 px. Uzrok: `@media (max-width:860px)` koristi
-   `minmax(150px)`, a iznad toga osnovno `minmax(200px)` — veći minimum daje
-   MANJE kolona. Sa 180 px se pojas 861–945 px izbjegava i broj kolona nikad
-   ne pada kad se prozor širi: 2 → 3 → 4 → 5. */
-.gallery{
-  list-style:none; margin:0; padding:0;
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
-  gap:20px;
-}
-/* fotografije kao arhivski otisci — beli okvir ih ujednačava */
-/* P38 — `overflow:hidden` je tu da uvećana slika ne probije beli okvir
-   (bilo je u zasebnom pravilu niže; spojeno u jedno, isto važi). */
-.gal{
-  display:block; background:#fff; padding:9px;
-  border:1px solid var(--line);
-  box-shadow:0 1px 2px rgba(22,36,29,.07);
-  transition:box-shadow .22s;
-  cursor:zoom-in;   /* P19 — jasan znak da se fotografija otvara */
-  overflow:hidden;
-}
-.gal:hover{ box-shadow:0 4px 14px rgba(22,36,29,.14); }
-/* P5 — blago ujednačen ton: fotografije se bolje slažu, ali boje ostaju.
-   Na prelaz mišem filter se skida, pa se vidi čist original. */
-.gal img{
-  width:100%; aspect-ratio:4/3; object-fit:cover;
-  filter:sepia(.16) saturate(.78) contrast(1.04) brightness(1.02);
-  transition:filter .3s, transform .4s ease;
-}
-/* P38 (v16) — na prelaz mišem slika se skida sa prigušenja I blago uveća.
-   Povećanje je 4 %: bijeli okvir je 9 px, pa slika uđe 3,8 px u njega i okvir
-   ostaje vidljiv (ne nestaje). Bez pomjeranja rasporeda — `transform`. */
-.gal:hover img,
-.gal:focus-visible img{ filter:none; transform:scale(1.04); }
+.archive-lead{ font-size:16px; color:var(--muted); margin:-8px 0 24px; }
+.gallery{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:20px; }
+.gal{ display:block; background:var(--paper); padding:9px; border:1px solid var(--line); cursor:zoom-in; }
+.gal:hover{ border-color:var(--muted); }
+.gal img{ width:100%; aspect-ratio:4/3; object-fit:cover; filter:sepia(.16) saturate(.78) contrast(1.04) brightness(1.02); }
 
-/* ============ KONTAKT ============ */
-/* P33 — kolone su počinjale u istoj liniji ali se NISU završavale u istoj:
-   izmjereno na 1300 px — lijevi stupac 488 px, mapa 450 px, razlika 38 px.
-   Oko to vidi kao „nešto nije na svom mjestu". Sada se mapa rastegne do iste
-   donje ivice (`align-items:stretch` + `height:auto` uz `min-height`). */
-.contact-grid{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1.02fr);
-  gap:clamp(34px,5.5vw,72px);
-  align-items:stretch;
-}
-
-/* P11 — nivo 2 (bilo clamp(26px,3.2vw,40px)) */
-.kontakt-lead{ margin-bottom:clamp(20px,2.4vw,28px); }
-
-/* P11 — nivo 2 (bilo margin 0 0 30px / padding 18px) */
+.contact-grid{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.02fr); gap:clamp(34px,5.5vw,72px); align-items:stretch; }
+.kontakt-lead{ margin-bottom:28px; }
 .facts{ margin:0 0 22px; }
-.fact{
-  display:grid; grid-template-columns:minmax(0,166px) minmax(0,1fr);
-  gap:22px; align-items:start;
-  padding:14px 0; border-bottom:1px solid var(--line);
-}
-/* P25 (V9) — bilo: siva velika slova (uppercase, --muted). Sada mali mesingani
-   serif sa blagim razmakom — kao natpis na kutiji arhive, u istom tonu kojim su
-   označene i usluge. Boja je --brass-deep, a NE --brass: obični mesing daje
-   3,44:1 i pada WCAG AA za tekst (vidi P20). Ovdje je 4,96:1. */
-/* P40 (v16) — ikone uz nazive podataka u Kontaktu. Dekoracija su: nose
-   `aria-hidden="true"`, a naziv („Adresa", „Telefon"…) stoji kao tekst, pa
-   čitač ekrana ne dobija ništa dvaput. Boja je obični `--brass`, što je dozvoljeno
-   jer NIJE tekst — za netekstualne elemente prag je 3:1 (ovdje 3,44:1), a ne 4,5:1. */
-.fact dt{
-  display:flex; align-items:center; gap:8px;
-  font-family:var(--serif); font-size:14.5px; font-weight:600;
-  letter-spacing:.04em; color:var(--brass-deep);
-}
-.fact-ico{
-  width:18px; height:18px; flex:0 0 auto;
-  color:var(--brass);
-}
-.fact dd{ margin:0; font-size:1.06rem; font-weight:600; }
-/* P15 — telefoni i email su bili visoki 24 px (izmjereno 113×24 i 200×24).
-   Za prst na telefonu tijesno, a to su najvažniji linkovi na sajtu. Sada 44 px. */
+.fact{ display:grid; grid-template-columns:minmax(0,142px) minmax(0,1fr); gap:22px; align-items:start; padding:14px 0; border-bottom:1px solid var(--line); }
+.fact dt{ display:flex; align-items:center; gap:8px; font-family:var(--serif); font-size:14.5px; font-weight:600; color:var(--brass-deep); }
+.fact-ico{ width:18px; height:18px; flex:0 0 auto; color:var(--brass); }
+.fact dd{ margin:0; font-size:1.06rem; font-weight:600; min-width:0; }
 .fact dd a{ font-weight:700; }
 .fact-links{ display:flex; flex-direction:column; align-items:flex-start; }
-.fact-links a{
-  display:inline-flex; align-items:center; min-height:44px;
-}
-
+.fact-links a{ display:inline-flex; align-items:center; min-height:44px; }
+.phone-kind{ display:inline-block; min-width:56px; margin-right:14px; color:var(--muted); font-weight:400; font-size:15px; }
+.fact-phone{ display:flex; align-items:center; flex-wrap:wrap; }
+.fact-email{ overflow-wrap:anywhere; }
 .hours{ border-collapse:collapse; width:100%; max-width:330px; }
-.hours th{ text-align:left; font-weight:600; font-size:16px; color:var(--text-soft); padding:5px 0; }
-.hours td{
-  text-align:right; font-weight:700; font-size:16px; padding:5px 0;
-  font-variant-numeric:tabular-nums;
-}
+.hours th{ text-align:left; font-weight:600; font-size:16px; color:var(--text-soft); padding:5px 10px 5px 0; }
+.hours td{ text-align:right; font-weight:700; font-size:16px; padding:5px 0; font-variant-numeric:tabular-nums; white-space:nowrap; }
 .hours .closed{ color:var(--muted); font-weight:600; }
+.contact-map{ margin:0; min-width:0; background:#fff; padding:9px; border:1px solid var(--line); box-shadow:0 1px 2px rgba(22,36,29,.07); display:flex; flex-direction:column; }
+.contact-map .inner{ position:relative; overflow:hidden; background:var(--paper-2); flex:1 1 auto; display:flex; }
+.contact-map iframe{ display:block; width:100%; height:auto; min-height:430px; flex:1 1 auto; border:0; background:var(--paper-2); filter:grayscale(.3) sepia(.13) saturate(.92) brightness(1.02) contrast(.98); }
 
-/* P4 — mapa u paleti sajta: blago utopljena, ostaje funkcionalna i klikabilna */
-/* P24 (V8) — mapa je bila jedini element bez okvira, pa je izgledala kao tuđi
-   umetak. Sada nosi isti bijeli arhivski okvir kao fotografije u Arhivi.
-   Filter prigušenja se NE dira — mapa ostaje u paleti sajta.
-   Bez potpisa ispod mape: adresa se već vidi u stupcu lijevo, a treći put na
-   istoj strani bi bilo ponavljanje.
-   P33 — visina više nije fiksna: mapa ima `min-height` (430 px, na telefonu
-   330 px) i rastegne se do donje ivice lijeve kolone. */
-.contact-map{
-  margin:0; min-width:0;
-  background:#fff; padding:9px;
-  border:1px solid var(--line);
-  box-shadow:0 1px 2px rgba(22,36,29,.07);
-  /* P33 — mapa je stupac koji se rastegne do visine reda */
-  display:flex; flex-direction:column;
-}
-.contact-map .inner{
-  position:relative; overflow:hidden; background:var(--paper-2);
-  flex:1 1 auto; display:flex;
-}
-.contact-map iframe{
-  display:block; width:100%;
-  /* P33 — bilo `height:430px` (fiksno), pa se mapa nije mogla rastegnuti.
-     `min-height` čuva donju granicu, a `height:auto` pušta rastezanje. */
-  height:auto; min-height:430px; flex:1 1 auto;
-  border:0; background:var(--paper-2);
-  filter:grayscale(.3) sepia(.13) saturate(.92) brightness(1.02) contrast(.98);
-}
-
-/* ============ PODNOŽJE ============ */
-/* P9 — zeleni obod na vrhu: posljednje što se vidi nosi isti potpis kao i prvo */
-.site-footer{
-  background:var(--ink); color:rgba(247,244,238,.6);
-  padding:56px 0 36px; border-top:3px solid var(--green);
-}
-/* P30 — podnožje je bilo jedno ispod drugog, sve uz lijevu ivicu. Izmjereno:
-   red navigacije je širok 1104 px, a pet linkova zajedno 243 px (~339 px sa
-   razmacima) — oko 765 px praznog prostora desno, pa je izgledalo nedovršeno.
-   Sada: ime i pravni podaci lijevo, navigacija desno, donja traka preko cijele
-   širine. Podnožje je pri tome i niže (izmjereno 241 px umjesto 309 px), jer
-   navigacija stane u ISTI red sa imenom, a ne ispod njega. */
-.footer-inner{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
-  gap:24px 44px;
-  align-items:start;
-}
+.site-footer{ background:var(--ink); color:rgba(247,244,238,.6); padding:48px 0 32px; border-top:3px solid var(--green); }
+.footer-inner{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:24px 44px; align-items:start; }
 .footer-brand{ display:flex; align-items:center; gap:12px; margin-bottom:8px; }
 .footer-mark{ width:32px; height:23px; flex:0 0 auto; color:var(--paper); }
-.footer-brand .footer-name{ margin:0; }
-.footer-name{
-  font-family:var(--serif); font-size:23px; font-weight:600;
-  color:var(--paper); margin:0 0 8px;
-}
+.footer-name{ font-family:var(--serif); font-size:23px; font-weight:600; color:var(--paper); margin:0; }
 .footer-legal{ margin:0; font-size:15px; line-height:1.6; }
 .footer-nav{ display:flex; flex-wrap:wrap; gap:10px 24px; justify-content:flex-end; }
-.footer-nav a{
-  display:inline-flex; align-items:center; min-height:44px;
-  color:rgba(247,244,238,.8); font-size:15px; font-weight:600;
-}
+.footer-nav a{ display:inline-flex; align-items:center; min-height:44px; color:rgba(247,244,238,.8); font-size:15px; font-weight:600; }
 .footer-nav a:hover{ color:var(--green); text-decoration:none; }
-.footer-bottom{
-  grid-column:1 / -1;
-  padding-top:22px; border-top:1px solid rgba(247,244,238,.12);
-}
-.footer-copy{
-  margin:0; font-size:14px; color:rgba(247,244,238,.56); /* P13 — bilo .46 → 4,20:1, padao AA */
-}
-.footer-credit{
-  margin:9px 0 0; font-size:14px; color:rgba(247,244,238,.6);
-}
-.footer-credit a{
-  display:inline-block; padding:3px 2px;
-  color:rgba(247,244,238,.78); text-decoration:underline; text-underline-offset:2px;
-}
+.footer-bottom{ grid-column:1 / -1; padding-top:20px; border-top:1px solid rgba(247,244,238,.12); }
+.footer-copy{ margin:0; font-size:14px; color:rgba(247,244,238,.56); }
+.footer-credit{ margin:9px 0 0; font-size:14px; }
+.footer-credit a{ display:inline-block; padding:3px 2px; color:rgba(247,244,238,.78); text-decoration:underline; text-underline-offset:2px; }
 .footer-credit a:hover{ color:var(--green); }
 
-/* ============ PREGLED FOTOGRAFIJE (lightbox) ============ */
-/* P44 (v17) — OKVIR VISE NE ZAVISI OD VELICINE SLIKE.
-   Izmjereno: `<img>` bez `src` nema visinu, pa je okvir pri otvaranju bio 54 px
-   i skocio na 534 px (+480) kad se velika slika ucita. Isto se ponavljalo pri
-   listanju, jer se okvir prekrajao na svaku promjenu velicine fotografije
-   (slike su 640x480, 936x702 i 985x739 — sve 4:3, ali razlicite sirine).
 
-   Sada je pozornica fiksna: sirina je `min(96vw, 1100px, 104vh)`, pa visina
-   za 4:3 ispadne tacno 78vh (104vh = 78vh x 4/3). Slika se u tu kutiju uklapa
-   preko `object-fit:contain` — nikad se ne izoblici, a okvir stoji mirno od
-   prvog iscrtavanja.
-
-   CijENA (svjesno prihvacena): slika od 640x480 se na sirokom ekranu uveca do
-   1,46x. Na telefonu nema uvecanja — tamo je pozornica oko 390 px. Posto su
-   fotografije ionako stare i meke, uvecanje se ne vidi, a miran okvir se vidi. */
-.lightbox{
-  --lb-w:min(96vw, 1100px, 104vh);
-  border:none; padding:0; background:transparent;
-  max-width:min(96vw,1100px); max-height:94vh; overflow:visible;
-}
+.lightbox{ --lb-w:min(94vw,1100px,calc(125.333vh - 112px)); border:0; padding:0; background:transparent; max-width:94vw; max-height:94vh; overflow:visible; }
 .lightbox::backdrop{ background:rgba(12,22,17,.94); }
-
-/* P17 — traka iznad fotografije: brojač lijevo, zatvaranje desno.
-   Prije je dugme stajalo -16px od okvira; pošto je okvir širok 94vw, na
-   telefonu od 390 px ispalo je ~4 px van ekrana. Ovako nikad ne izlazi. */
-.lightbox-bar{
-  display:flex; align-items:center; justify-content:space-between; gap:16px;
-  padding:0 0 10px;   /* padding, ne margin — klik u tom pojasu ne smije da zatvori pregled */
-}
-.lightbox-count{
-  margin:0; font-size:14px; font-weight:700; letter-spacing:.08em;
-  color:rgba(247,244,238,.78); font-variant-numeric:tabular-nums;
-}
-.lightbox-close{
-  flex:0 0 auto; width:44px; height:44px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  background:rgba(247,244,238,.14); color:var(--paper);
-  border:1px solid rgba(247,244,238,.24); cursor:pointer;
-  transition:background .16s, color .16s, border-color .16s;
-}
-.lightbox-close:hover{ background:var(--green); color:var(--ink); border-color:var(--green); }
-
-.lightbox-stage{ position:relative; width:var(--lb-w); }
-.lightbox img{
-  display:block; margin:0 auto;
-  /* P44 — kutija je odredjena unaprijed, pa je ista i prije i posle ucitavanja */
-  width:100%; height:auto; aspect-ratio:4/3; object-fit:contain;
-  max-height:78vh;                 /* mreza za slucaj da fotografija nije 4:3 */
-  border-radius:var(--r); background:rgba(247,244,238,.06);
-}
-/* P17 — strelice preko fotografije, unutar okvira: nikad ne izlaze van ekrana */
-.lightbox-nav{
-  position:absolute; top:50%; transform:translateY(-50%);
-  width:48px; height:48px; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  background:rgba(12,22,17,.55); color:var(--paper);
-  border:1px solid rgba(247,244,238,.3); cursor:pointer;
-  -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px);
-  transition:background .16s, color .16s, border-color .16s;
-}
-.lightbox-nav:hover{ background:var(--green); color:var(--ink); border-color:var(--green); }
+.lightbox-bar{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding-bottom:10px; }
+.lightbox-count{ margin:0; font-size:14px; font-weight:700; letter-spacing:.06em; color:rgba(247,244,238,.78); font-variant-numeric:tabular-nums; }
+.lightbox-close{ flex:0 0 auto; width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(247,244,238,.14); color:var(--paper); border:1px solid rgba(247,244,238,.24); cursor:pointer; transition:background .16s,color .16s; }
+.lightbox-close:hover,.lightbox-nav:hover{ background:var(--green); color:var(--ink); border-color:var(--green); }
+.lightbox-stage{ position:relative; width:var(--lb-w); aspect-ratio:4/3; }
+.lightbox img{ width:100%; height:100%; object-fit:contain; border-radius:var(--r); background:rgba(247,244,238,.06); }
+.lightbox-nav{ position:absolute; z-index:2; top:50%; transform:translateY(-50%); width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(12,22,17,.7); color:var(--paper); border:1px solid rgba(247,244,238,.3); cursor:pointer; }
 .lightbox-prev{ left:10px; }
 .lightbox-next{ right:10px; }
-.lightbox-nav[hidden]{ display:none; }
+.lightbox-state{ position:absolute; z-index:1; left:14px; right:14px; bottom:14px; display:flex; flex-direction:column; align-items:center; gap:14px; padding:12px; text-align:center; font-size:16px; color:var(--paper); background:rgba(12,22,17,.9); border-radius:var(--r); }
+.lightbox-message{ margin:0; }
+.lightbox[data-state="error"] .lightbox-state{ inset:0; justify-content:center; padding:24px 64px; }
+.lightbox-retry{ min-height:44px; padding:0 18px; }
+@supports (height:100dvh){ .lightbox{ --lb-w:min(94vw,1100px,calc(125.333dvh - 112px)); max-height:94dvh; } }
 
-@media (max-width:520px){
-  /* P44 — i na telefonu vazi isti obrazac: 70vh x 4/3 = 93vh */
-  .lightbox{ max-width:94vw; --lb-w:min(94vw, 93vh); }
-  .lightbox-nav{ width:42px; height:42px; }
-  .lightbox-prev{ left:6px; }
-  .lightbox-next{ right:6px; }
-  .lightbox img{ max-height:70vh; }
-}
-
-/* ============ RESPONSIVE ============ */
-@media (min-width:1000px){
-  .gallery{ grid-template-columns:repeat(5,minmax(0,1fr)); }
-}
-
+@media (min-width:1000px){ .gallery{ grid-template-columns:repeat(5,minmax(0,1fr)); } }
 @media (max-width:980px){
-  .hero-grid{ grid-template-columns:1fr; column-gap:0; }
-  /* P48 — umjesto portreta sada se ispod uvoda lomi lična karta */
-  .uvod-karta{ margin-top:1.8em; }
+  .hero-grid{ grid-template-columns:1fr; max-width:760px; gap:22px; }
+  .uvod-karta{ padding-left:20px; }
+  .hero-practical{ grid-template-columns:minmax(max-content,1.2fr) minmax(0,1fr); gap:20px; padding-top:16px; }
   .contact-grid{ grid-template-columns:1fr; gap:32px; }
-  .route-note{ max-width:60ch; }
-}
-
-@media (max-width:860px){
-  .nav-toggle{ display:inline-flex; margin-left:auto; }
+  .header-inner{ flex-wrap:wrap; gap:12px; }
   .header-call{ display:none; }
-  .site-nav{
-    position:absolute; top:100%; left:0; right:0; margin-left:0;
-    background:var(--paper); border-bottom:1px solid var(--line);
-    padding:12px 28px 22px; display:none;
-  }
-  .site-nav.is-open{ display:block; }
-  .site-nav ul{ flex-direction:column; align-items:stretch; gap:10px; }
-  .site-nav a{
-    min-height:54px; padding:0 18px; font-size:16px;
-    border:1px solid var(--line); border-radius:var(--r);
-  }
-  /* P21 — u mobilnom meniju su stavke kutije, pa podvlaka ne odgovara;
-     tu se stavka označava blagom podlogom. */
-  .site-nav a:hover,
-  .site-nav a:focus-visible{ text-decoration:none; background:var(--paper-2); }
-  /* P16 — poziv kao prva, istaknuta stavka menija */
-  .site-nav .nav-phone{
-    display:flex; align-items:center; justify-content:center; gap:10px;
-    min-height:56px; margin:0 0 12px; padding:0 18px;
-    background:var(--forest); color:var(--paper);
-    border:1px solid var(--forest); border-radius:var(--r);
-    font-size:16px; font-weight:700;
-  }
-  .site-nav .nav-phone:hover,
-  .site-nav .nav-phone:focus-visible{
-    background:var(--ink); border-color:var(--ink); color:var(--paper);
-    box-shadow:none; text-decoration:none;
-  }
-  .gallery{ grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; }
-  .uvod-actions .btn{ width:100%; }
+  .site-header:not(.nav-ready){ position:relative; }
+  .site-nav{ width:100%; margin:0; padding:0 0 12px; }
+  .site-nav ul{ flex-wrap:wrap; gap:4px; }
+  .site-nav a{ min-height:44px; padding:0 12px; }
+  .nav-ready .header-inner{ flex-wrap:nowrap; }
+  .nav-ready .nav-toggle{ display:inline-flex; }
+  .nav-ready .site-nav{ position:absolute; top:100%; left:0; right:0; width:auto; padding:12px 24px 20px; display:none; background:var(--paper); border-bottom:1px solid var(--line); max-height:calc(100vh - var(--header-height)); overflow-y:auto; overscroll-behavior:contain; }
+  .nav-ready .site-nav.is-open{ display:block; }
+  .nav-ready .site-nav ul{ flex-direction:column; align-items:stretch; gap:8px; }
+  .nav-ready .site-nav a{ min-height:50px; padding:0 18px; font-size:16px; border-bottom:1px solid var(--line); }
+  .nav-ready .site-nav a:hover,.nav-ready .site-nav a:focus-visible{ text-decoration:none; background:var(--paper-2); }
+  .nav-ready .site-nav .nav-phone{ display:flex; align-items:center; justify-content:center; min-height:54px; margin-bottom:12px; padding:10px 14px; background:var(--forest); color:var(--paper); border:1px solid var(--forest); border-radius:var(--r); flex-wrap:wrap; gap:0 8px; }
+  .nav-phone .btn-ico{ margin:0; }
+  .nav-ready .site-nav .nav-phone:hover{ background:var(--ink); }
   .fact{ grid-template-columns:1fr; gap:5px; }
-  /* P30 — podnožje se na užim ekranima vraća na jednu kolonu */
   .footer-inner{ grid-template-columns:1fr; gap:24px; }
   .footer-nav{ justify-content:flex-start; }
   .footer-bottom{ grid-column:auto; }
+  @supports (height:100dvh){ .nav-ready .site-nav{ max-height:calc(100dvh - var(--header-height)); } }
 }
-
-@media (max-width:520px){
-  body{ font-size:16px; }
-  .wrap{ padding:0 20px; }
-  .gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-  .gal{ padding:7px; }
-  .contact-map iframe{ height:auto; min-height:330px; }   /* P33 — bilo height:330px */
-}
-
-/* P22 (V1) — na uskim ekranima dvije kolone ostaju bez vazduha, pa usluge
-   prelaze u jednu. Ivice se moraju vratiti na svako polje: pravila iz osnovnog
-   dijela (:nth-child(2n), :nth-last-child) važe i dalje, a ovdje se poništavaju. */
+@media (max-width:860px){ .gallery{ grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; } }
 @media (max-width:600px){
   .services{ grid-template-columns:1fr; }
   .services li{ border-right:0; border-bottom:1px solid var(--line); }
   .services li:nth-last-child(-n+2){ border-bottom:1px solid var(--line); }
   .services li:last-child{ border-bottom:0; }
-
-  /* P48 — lična karta je na uskom ekranu preko cijele širine, pa se unutrašnji
-     razmak smanjuje da tekst ne stoji uz samu ivicu. (P27 je ovdje centrirao
-     doktorkinu fotografiju; portreta više nema.) */
-  .uvod-karta{ padding:18px 18px 20px; }
+  .hero-grid{ gap:20px; }
+  .uvod-karta{ padding:0 0 0 16px; }
+  .karta-ime{ margin-bottom:8px; }
 }
-
-/* ============ 404 ============ */
-/* P45 (v17) — dva `style=` atributa iz 404.html su premjestena ovdje. Stil
-   upisan u HTML se ne kesira kao CSS, ne vidi se na jednom mjestu sa ostalim
-   stilovima i nadjacava svako pravilo iz spoljnog fajla. */
+@media (max-width:520px){
+  body{ font-size:16px; }
+  .wrap{ padding:0 20px; }
+  .header-inner{ gap:10px; min-height:72px; }
+  .brand{ gap:9px; min-width:0; flex:0 1 auto; }
+  .brand-mark{ width:30px; height:23px; }
+  .brand-name{ font-size:21px; }
+  .brand-sub{ font-size:14px; }
+  .nav-toggle{ padding:0 10px; gap:7px; }
+  .hero{ padding:26px 0 30px; }
+  .uvod-lead{ margin-bottom:18px; }
+  .uvod-actions .btn{ flex:1 1 0; padding:0 12px; }
+  .hero-practical{ gap:16px; }
+  .hero-practical dd{ font-size:15px; }
+  .regional{ padding:28px 0; }
+  .regional .lead{ margin-bottom:18px; }
+  .route-note{ margin-top:16px; }
+  .gallery{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+  .gal{ padding:7px; }
+  .contact-map iframe{ min-height:330px; }
+  .lightbox-nav{ width:44px; height:44px; }
+  .lightbox-prev{ left:6px; }
+  .lightbox-next{ right:6px; }
+  .lightbox-state{ left:6px; right:6px; bottom:6px; font-size:15px; }
+}
+@media (max-width:480px){
+  .route{ display:block; background-image:repeating-linear-gradient(180deg,var(--line) 0 5px,transparent 5px 11px); background-repeat:no-repeat; background-position:5px 21px; background-size:1px calc(100% - 31px); }
+  .route li{ padding-bottom:30px; }
+  .route li:last-child{ padding-bottom:0; }
+  .route li:not(:last-child)::after{ display:none; }
+}
+@media (max-width:360px){
+  .wrap{ padding:0 16px; }
+  #arhiva .wrap{ padding:0 20px; }
+  .brand-name{ font-size:20px; }
+  .brand-sub{ max-width:160px; }
+  .nav-toggle{ padding:0 8px; }
+  .nav-toggle-bars{ width:17px; }
+  .uvod-actions .btn{ padding:0 8px; font-size:15px; }
+}
 .stranica-404{ max-width:640px; }
 .lead-404{ margin-bottom:2em; }
-
-@media (prefers-reduced-motion:reduce){
-  /* `html{scroll-behavior:auto}` je uklonjeno u v17 — bilo je suvisno.
-     P41 (gore) postavlja `scroll-behavior:smooth` SAMO uz `no-preference`, pa
-     je pod `reduce` vrijednost ionako pocetna (`auto`). */
-  *,*::before,*::after{ transition-duration:.01ms !important; animation-duration:.01ms !important; }
-}
-
+@media (prefers-reduced-motion:reduce){ *,*::before,*::after{ transition-duration:.01ms !important; animation-duration:.01ms !important; } }
 </style>
-
-<!-- P37 — bez ovoga bi bez JavaScripta nestalo oko 60 % strane: sve što nosi
-     `.reveal` (četiri <h2>, rešetka usluga, galerija, kontakt) ostaje na
-     `opacity:0`, jer klasu `.is-visible` dodaje isključivo skripta. Izmjereno:
-     8 od 8 blokova nevidljivo.
-     Klasa `js` se stavlja OVDJE, prije prvog iscrtavanja, i samo ona uključuje
-     skrivanje (`html.js .reveal` u CSS-u). Ako se ova skripta ne izvrsi, klase
-     nema, pravilo se ne primjenjuje i sav sadrzaj je vidljiv.
-     `<noscript>` sam ovdje NIJE dovoljan — on radi samo kad je skriptovanje
-     iskljuceno u pregledacu, ne i kad se `js/script.js` ne ucita. -->
-<script>
-document.documentElement.classList.add('js');
-/* Mreza za slucaj da se `js/script.js` ipak ne ucita: ako se glavna skripta
-   ne javi u roku od 3 s, otkrij sve sto nosi `.reveal`. U normalnom radu se
-   ovo nikada ne izvrsi — zastavicu `__omReveal` postavi glavna skripta. */
-setTimeout(function () {
-  if (window.__omReveal) return;
-  var n = document.querySelectorAll('.reveal'), i;
-  for (i = 0; i < n.length; i++) n[i].classList.add('is-visible');
-}, 3000);
-</script>
-
-<!-- P57 — ista usluga se zvala na dva načina. JSON-LD katalog je jedini pisao
-     „Kompjutersko mjerenje očnog pritiska", a meta opis, vidljiva usluga 01 i
-     ostali JSON-LD samo „mjerenje očnog pritiska" (četiri mjesta prema jednom).
-     Na pitanje da li se pritisak mjeri kompjuterskim tonometrom korisnik je rekao
-     „nije bitno kako se mjeri" — pa je riječ UKLONJENA, a ne dodata na ostala
-     mjesta: tako se usluga svuda zove isto i ne tvrdi ništa o opremi. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1079,7 +326,7 @@ setTimeout(function () {
       "employee": { "@type": "Person", "name": "Mila Radović", "honorificPrefix": "primarius dr", "jobTitle": "Doktor medicine — optometrija" },
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Petra Bojovića",
+        "streetAddress": "Petra Bojovića bb",
         "addressLocality": "Foča",
         "postalCode": "73300",
         "addressRegion": "Republika Srpska",
@@ -1123,34 +370,23 @@ setTimeout(function () {
 }
 </script>
 </head>
-
 <body>
 <a class="skip-link" href="#main">Preskoči na sadržaj</a>
-
-<header class="site-header" id="vrh">
+<header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="#vrh">
-      <svg class="brand-mark" viewBox="0 0 1792 1280" width="38" height="27"
-           aria-hidden="true" focusable="false"><path fill="currentColor" d="M1664 704q-152-236-381-353q61 104 61 225q0 185-131.5 316.5T896 1024T579.5 892.5T448 576q0-121 61-225q-229 117-381 353q133 205 333.5 326.5T896 1152t434.5-121.5T1664 704M944 320q0-20-14-34t-34-14q-125 0-214.5 89.5T592 576q0 20 14 34t34 14t34-14t14-34q0-86 61-147t147-61q20 0 34-14t14-34m848 384q0 34-20 69q-140 230-376.5 368.5T896 1280t-499.5-139T20 773Q0 738 0 704t20-69q140-229 376.5-368T896 128t499.5 139T1772 635q20 35 20 69"/></svg>
+    <a class="brand" href="#o-nama">
+      <svg class="brand-mark" viewBox="0 0 1792 1280" width="38" height="27" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M1664 704q-152-236-381-353q61 104 61 225q0 185-131.5 316.5T896 1024T579.5 892.5T448 576q0-121 61-225q-229 117-381 353q133 205 333.5 326.5T896 1152t434.5-121.5T1664 704M944 320q0-20-14-34t-34-14q-125 0-214.5 89.5T592 576q0 20 14 34t34 14t34-14t14-34q0-86 61-147t147-61q20 0 34-14t14-34m848 384q0 34-20 69q-140 230-376.5 368.5T896 1280t-499.5-139T20 773Q0 738 0 704t20-69q140-229 376.5-368T896 128t499.5 139T1772 635q20 35 20 69"/></svg>
       <span class="brand-txt">
         <span class="brand-name">Optika Mila</span>
         <span class="brand-sub">Očna kuća u Foči · od 1997.</span>
       </span>
     </a>
-
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="glavna-navigacija">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="glavna-navigacija" hidden>
       <span class="nav-toggle-bars" aria-hidden="true"><i></i><i></i><i></i></span>
       <span>Meni</span>
     </button>
-
     <nav id="glavna-navigacija" class="site-nav" aria-label="Glavna navigacija">
-      <a class="nav-phone" href="tel:+38758210734">
-        <svg class="btn-ico" viewBox="0 0 20 20" width="20" height="20"
-             fill="currentColor" aria-hidden="true" focusable="false">
-          <path d="M17.256 12.253c-.096-.667-.611-1.187-1.274-1.342c-2.577-.604-3.223-2.088-3.332-3.734C12.193 7.092 11.38 7 10 7s-2.193.092-2.65.177c-.109 1.646-.755 3.13-3.332 3.734c-.663.156-1.178.675-1.274 1.342l-.497 3.442C2.072 16.907 2.962 18 4.2 18h11.6c1.237 0 2.128-1.093 1.953-2.305zM10 15.492c-1.395 0-2.526-1.12-2.526-2.5s1.131-2.5 2.526-2.5s2.526 1.12 2.526 2.5s-1.132 2.5-2.526 2.5M19.95 6c-.024-1.5-3.842-3.999-9.95-4C3.891 2.001.073 4.5.05 6s.021 3.452 2.535 3.127c2.941-.381 2.76-1.408 2.76-2.876C5.345 5.227 7.737 4.98 10 4.98s4.654.247 4.655 1.271c0 1.468-.181 2.495 2.76 2.876C19.928 9.452 19.973 7.5 19.95 6"/>
-        </svg>
-        Pozovite nas · +387 58 210 734
-      </a>
+      <a class="nav-phone" href="tel:+38758210734"><svg class="btn-ico" viewBox="0 0 20 20" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M17.256 12.253c-.096-.667-.611-1.187-1.274-1.342c-2.577-.604-3.223-2.088-3.332-3.734C12.193 7.092 11.38 7 10 7s-2.193.092-2.65.177c-.109 1.646-.755 3.13-3.332 3.734c-.663.156-1.178.675-1.274 1.342l-.497 3.442C2.072 16.907 2.962 18 4.2 18h11.6c1.237 0 2.128-1.093 1.953-2.305zM10 15.492c-1.395 0-2.526-1.12-2.526-2.5s1.131-2.5 2.526-2.5s2.526 1.12 2.526 2.5s-1.132 2.5-2.526 2.5M19.95 6c-.024-1.5-3.842-3.999-9.95-4C3.891 2.001.073 4.5.05 6s.021 3.452 2.535 3.127c2.941-.381 2.76-1.408 2.76-2.876C5.345 5.227 7.737 4.98 10 4.98s4.654.247 4.655 1.271c0 1.468-.181 2.495 2.76 2.876C19.928 9.452 19.973 7.5 19.95 6"/></svg><span>Pozovite nas</span><span>+387 58 210 734</span></a>
       <ul>
         <li><a href="#o-nama">O nama</a></li>
         <li><a href="#van-foce">Van Foče</a></li>
@@ -1159,271 +395,119 @@ setTimeout(function () {
         <li><a href="#kontakt">Kontakt</a></li>
       </ul>
     </nav>
-
     <a class="header-call" href="tel:+38758210734">+387 58 210 734</a>
   </div>
 </header>
-
 <main id="main" tabindex="-1">
-
-  <!-- ================= UVOD: očna kuća + doktorica (spojeno) ================= -->
-  <!-- P48 (v18) — doktorka ne daje svoju fotografiju, pa je portret uklonjen.
-       Desna kolona je postojala SAMO zbog njega; sada u njoj stoji „lična
-       karta" — ime, zvanje i kratak tekst. Naslov je ušao u LIJEVU kolonu da
-       obje počinju na istoj visini. -->
   <section id="o-nama" class="hero">
     <div class="wrap hero-grid">
       <div class="uvod-levo">
         <h1>Optika Mila Foča</h1>
-
-        <p class="uvod-lead">
-          Savremena i stručno osposobljena očna kuća u Foči, koja uz najviši stepen
-          stručnosti, iskustva i pažnje prema pacijentu, profesionalno i povoljno
-          pruža usluge po pitanju zdravstvene zaštite iz domena oftalmoloških potreba.
-        </p>
-
+        <p class="uvod-lead">Savremena i stručno osposobljena očna kuća u Foči, koja uz najviši stepen stručnosti, iskustva i pažnje prema pacijentu, profesionalno i povoljno pruža usluge po pitanju zdravstvene zaštite iz domena oftalmoloških potreba.</p>
         <div class="uvod-actions">
-          <a class="btn btn-solid" href="tel:+38758210734">
-            <svg class="btn-ico" viewBox="0 0 20 20" width="20" height="20"
-                 fill="currentColor" aria-hidden="true" focusable="false">
-              <path d="M17.256 12.253c-.096-.667-.611-1.187-1.274-1.342c-2.577-.604-3.223-2.088-3.332-3.734C12.193 7.092 11.38 7 10 7s-2.193.092-2.65.177c-.109 1.646-.755 3.13-3.332 3.734c-.663.156-1.178.675-1.274 1.342l-.497 3.442C2.072 16.907 2.962 18 4.2 18h11.6c1.237 0 2.128-1.093 1.953-2.305zM10 15.492c-1.395 0-2.526-1.12-2.526-2.5s1.131-2.5 2.526-2.5s2.526 1.12 2.526 2.5s-1.132 2.5-2.526 2.5M19.95 6c-.024-1.5-3.842-3.999-9.95-4C3.891 2.001.073 4.5.05 6s.021 3.452 2.535 3.127c2.941-.381 2.76-1.408 2.76-2.876C5.345 5.227 7.737 4.98 10 4.98s4.654.247 4.655 1.271c0 1.468-.181 2.495 2.76 2.876C19.928 9.452 19.973 7.5 19.95 6"/>
-            </svg>
-            Pozovite nas
-          </a>
-          <!-- P55 — dugme je govorilo „Usluge i oprema", a sekcija #usluge se zove
-               „Usluge" i o opremi ne kaže ništa (oprema postoji samo u alt tekstovima
-               galerije). Naslov u navigaciji je takođe „Usluge" — sada se poklapaju. -->
-          <a class="btn btn-line" href="#usluge">Usluge</a>
+          <a class="btn btn-solid" href="tel:+38758210734"><svg class="btn-ico" viewBox="0 0 20 20" width="20" height="20" fill="currentColor" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path d="M17.256 12.253c-.096-.667-.611-1.187-1.274-1.342c-2.577-.604-3.223-2.088-3.332-3.734C12.193 7.092 11.38 7 10 7s-2.193.092-2.65.177c-.109 1.646-.755 3.13-3.332 3.734c-.663.156-1.178.675-1.274 1.342l-.497 3.442C2.072 16.907 2.962 18 4.2 18h11.6c1.237 0 2.128-1.093 1.953-2.305zM10 15.492c-1.395 0-2.526-1.12-2.526-2.5s1.131-2.5 2.526-2.5s2.526 1.12 2.526 2.5s-1.132 2.5-2.526 2.5M19.95 6c-.024-1.5-3.842-3.999-9.95-4C3.891 2.001.073 4.5.05 6s.021 3.452 2.535 3.127c2.941-.381 2.76-1.408 2.76-2.876C5.345 5.227 7.737 4.98 10 4.98s4.654.247 4.655 1.271c0 1.468-.181 2.495 2.76 2.876C19.928 9.452 19.973 7.5 19.95 6"/></svg>Pozovite nas</a>
+          <a class="btn btn-line" href="#kontakt">Kako do nas</a>
         </div>
       </div>
-
       <section class="uvod-karta" aria-labelledby="karta-ime">
         <h2 class="karta-ime" id="karta-ime">primarius dr Mila Radović</h2>
-
-        <div class="uvod-text">
-          <h3>Sve preglede obavlja doktorka lično</h3>
-          <!-- P53 — iz prvog pasusa je sklonjena riječ „kompjuterskog". Razlog: P52
-               je u DRUGI pasus uveo „na savremenoj kompjuterskoj dijagnostici", pa se
-               „kompjutersk-" našlo dva puta u istoj kartici, dva reda razmaka. Prodajna
-               poenta (kompjuterska dijagnostika) time nije izgubljena — ona je sada u
-               drugom pasusu. Prikaz sa tri alternative (C i D brišu i nabrajanje usluga,
-               koje ionako stoji u „Uslugama", u meta opisu i u JSON-LD-u):
-               `p53-uvod-tekst.html`. -->
-          <p>
-            Optiku Mila vodi od osnivanja. Pregled, mjerenje i konačan nalaz su u
-            njenim rukama — od određivanja dioptrije i mjerenja očnog pritiska do
-            dubinskog pregleda oka.
-          </p>
-          <!-- P52 — drugi pasus je prepravljen. Stari je: „Radi precizno i temeljno,
-               uz savremenu kompjutersku dijagnostičku opremu. Stručnost i dugogodišnje
-               iskustvo idu zajedno sa pristupačnim cijenama."
-               Četiri stvari su bile pogrešne: (1) „radi precizno i temeljno" je tvrdnja o
-               sebi bez slike; (2) „savremenu kompjutersku dijagnostičku opremu" su tri
-               pridjeva ispred imenice; (3) „stručnost i dugogodišnje iskustvo" PONAVLJA
-               uvodni pasus riječ po riječ — 28 redova iznad stoji „uz najviši stepen
-               stručnosti, iskustva i pažnje"; (4) „idu zajedno" ne nosi ništa.
-               Korisnik je izabrao varijantu D (jedna rečenica), uz zamjenu „bez žurbe"
-               → „smireno". Prikaz sa svim varijantama: `p52-uvod-tekst.html`. -->
-          <!-- P55 — cijena je izbačena iz kartice. Razlog: „povoljno" (uvod, red 181) i
-               „po povoljnim cijenama" (Usluge 02) već nose tu misao, a treće pominjanje
-               („cijene koje ostaju pristupačne") je bilo jedno previše. Umjesto nje
-               „višedecenijska praksa" — iskustvo, ne cijena. -->
-          <p>
-            Smireno i bez improvizacije, na savremenoj kompjuterskoj dijagnostici — uz
-            višedecenijsku praksu.
-          </p>
-        </div>
+        <p>Sve preglede obavlja lično, uz savremenu dijagnostiku i višedecenijsku praksu.</p>
       </section>
+      <dl class="hero-practical">
+        <div><dt>Radno vrijeme</dt><dd class="hero-hours"><span>Pon–pet</span> <span class="hero-time">09:00–16:00</span> <span>Subota</span> <span class="hero-time">09:00–14:00</span></dd></div>
+        <div><dt>Adresa</dt><dd>Petra Bojovića bb</dd></div>
+      </dl>
     </div>
   </section>
-
-  <!-- ================= VAN FOČE ================= -->
-  <section id="van-foce" class="band band-tint">
+  <section id="van-foce" class="band band-tint regional">
     <div class="wrap">
-      <h2 class="reveal">Pregledi van Foče</h2>
-
-      <p class="lead">
-        Primarius dr Mila Radović jednom mjesečno obavlja preglede u&nbsp;Domovima zdravlja:
-      </p>
-
-      <ul class="route reveal" aria-label="Mjesta koja se posjećuju jednom mjesečno">
+      <h2>Pregledi van Foče</h2>
+      <p class="lead">Jednom mjesečno, primarius dr Mila Radović obavlja preglede u Domovima zdravlja:</p>
+      <ul class="route" aria-label="Mjesta koja se posjećuju jednom mjesečno">
         <li><span class="dot" aria-hidden="true"></span>Nevesinje</li>
         <li><span class="dot" aria-hidden="true"></span>Rogatica</li>
         <li><span class="dot" aria-hidden="true"></span>Gacko</li>
       </ul>
-
-      <p class="route-note">
-        Detaljnija uputstva dobijate u Domovima zdravlja ili na telefon
-        <a href="tel:+38758210734">+387 58 210 734</a> i
-        <a href="tel:+38765466101">+387 65 466 101</a>.
-      </p>
+      <p class="route-note">Za datum narednog pregleda i detaljnije informacije obratite se Domu zdravlja ili nas pozovite na <a href="tel:+38758210734">+387 58 210 734</a> ili <a href="tel:+38765466101">+387 65 466 101</a>.</p>
     </div>
   </section>
-
-  <!-- ================= USLUGE ================= -->
   <section id="usluge" class="band">
     <div class="wrap">
-      <h2 class="reveal">Usluge</h2>
-
-      <ul class="services reveal">
-        <li>
-          <span class="svc-n">01</span>
-          <h3>Pregled vida</h3>
-          <p>Kompjutersko određivanje dioptrije, mjerenje očnog pritiska i dubinski pregled oka.</p>
-        </li>
-        <li>
-          <span class="svc-n">02</span>
-          <h3>Naočare</h3>
-          <p>Izrada naočara sa utvrđenom dioptrijom i ugradnja stakala na licu mjesta, po povoljnim cijenama.</p>
-        </li>
-        <li>
-          <span class="svc-n">03</span>
-          <h3>Kontaktna sočiva</h3>
-          <!-- P54 — bilo: „...i sredstava za održavanje, uz savjet o njezi." — „održavanje"
-               i „njega" su isti pojam dvaput u istoj rečenici. Sada je drugi dio „savjet
-               pri izboru", što je druga informacija. -->
-          <p>Sve vrste kontaktnih sočiva i sredstava za održavanje, uz savjet pri izboru.</p>
-        </li>
-        <li>
-          <span class="svc-n">04</span>
-          <h3>Popravka naočara</h3>
-          <!-- P54 — bilo: „Zamjena vijaka, ispravljanje okvira i zamjena oštećenih stakala."
-               — „zamjena" dvaput u istoj rečenici. Sada je jedan glagol za oba predmeta. -->
-          <p>Zamjena vijaka i oštećenih stakala, uz ispravljanje okvira.</p>
-        </li>
+      <h2>Usluge</h2>
+      <ul class="services">
+        <li><h3>Pregled vida</h3><p>Kompjutersko određivanje dioptrije, mjerenje očnog pritiska i dubinski pregled oka.</p></li>
+        <li><h3>Naočare</h3><p>Izrada naočara sa utvrđenom dioptrijom i ugradnja stakala na licu mjesta, po povoljnim cijenama.</p></li>
+        <li><h3>Kontaktna sočiva</h3><p>Kontaktna sočiva i sredstva za održavanje, uz savjet pri izboru.</p></li>
+        <li><h3>Popravka naočara</h3><p>Zamjena vijaka i oštećenih stakala, uz ispravljanje okvira.</p></li>
       </ul>
     </div>
   </section>
-
-  <!-- ================= ARHIVA ================= -->
   <section id="arhiva" class="band band-tint">
     <div class="wrap">
-      <h2 class="reveal">Arhiva</h2>
-
-      <ul class="gallery reveal">
-        <li><a class="gal" href="img/galerija/optika_mila_1-full.webp">
-          <img src="img/galerija/optika_mila_1-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_1-thumb-320.webp 320w, img/galerija/optika_mila_1-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Ulaz u Optiku Mila u Foči — natpis iznad vrata na zgradi od žute cigle"></a></li>
-
-        <li><a class="gal" href="img/galerija/optika_mila_10-full.webp">
-          <img src="img/galerija/optika_mila_10-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_10-thumb-320.webp 320w, img/galerija/optika_mila_10-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Unutrašnjost prodajnog prostora Optike Mila sa mušterijama i vitrinama sa naočarima"></a></li>
-
-        <li><a class="gal" href="img/galerija/optika_mila_11-full.webp">
-          <img src="img/galerija/optika_mila_11-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_11-thumb-320.webp 320w, img/galerija/optika_mila_11-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Tri poslužavnika sa okvirima za naočare — Ray-Ban, Boss, Dolce &amp; Gabbana, Police i Gucci"></a></li>
-
-        <li><a class="gal" href="img/galerija/optika_mila_12-full.webp">
-          <img src="img/galerija/optika_mila_12-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_12-thumb-320.webp 320w, img/galerija/optika_mila_12-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Poslužavnik sa okvirima od metala tankih ivica u više boja"></a></li>
-
-        <li><a class="gal" href="img/galerija/optika_mila_4-full.webp">
-          <img src="img/galerija/optika_mila_4-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_4-thumb-320.webp 320w, img/galerija/optika_mila_4-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Staklene vitrine sa naočarima, kutijama kontaktnih sočiva i promotivnim posterom"></a></li>
-
-        <li><a class="gal" href="img/galerija/optika_mila_7-full.webp">
-          <img src="img/galerija/optika_mila_7-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_7-thumb-320.webp 320w, img/galerija/optika_mila_7-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Zidni i stojeći stalkci sa okvirima naočara i ogledalo u prodajnom prostoru"></a></li>
-
-        <li><a class="gal" href="img/galerija/optika_mila_3-full.webp">
-          <img src="img/galerija/optika_mila_3-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_3-thumb-320.webp 320w, img/galerija/optika_mila_3-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Ordinacija za pregled vida — osvijetljena tabla sa optotipima, stolica i aparat za pregled oka"></a></li>
-
-        <li><a class="gal" href="img/galerija/optika_mila_2-full.webp">
-          <img src="img/galerija/optika_mila_2-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_2-thumb-320.webp 320w, img/galerija/optika_mila_2-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Dijagnostička oprema u ordinaciji — autorefraktometar, biomikroskop i probni okvir"></a></li>
-
-        <li><a class="gal" href="img/galerija/optika_mila_6-full.webp">
-          <img src="img/galerija/optika_mila_6-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_6-thumb-320.webp 320w, img/galerija/optika_mila_6-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Doktorka u bijelom mantilu obavlja pregled oka pacijentu na aparatu, tabla sa optotipima u pozadini"></a></li>
-
-        <li><a class="gal" href="img/galerija/optika_mila_9-full.webp">
-          <img src="img/galerija/optika_mila_9-thumb.webp" sizes="(max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_9-thumb-320.webp 320w, img/galerija/optika_mila_9-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async"
-               alt="Pregled oka na biomikroskopu SL-10 uz prisustvo pratnje pacijenta"></a></li>
+      <h2>Arhiva fotografija</h2>
+      <p class="archive-lead">Fotografije radnje i ordinacije iz ranijih godina.</p>
+      <ul class="gallery">
+        <li><a class="gal" href="img/galerija/optika_mila_1-full.webp"><img src="img/galerija/optika_mila_1-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_1-thumb-320.webp 320w, img/galerija/optika_mila_1-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Ulaz u Optiku Mila u Foči — natpis iznad vrata na zgradi od žute cigle"></a></li>
+        <li><a class="gal" href="img/galerija/optika_mila_10-full.webp"><img src="img/galerija/optika_mila_10-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_10-thumb-320.webp 320w, img/galerija/optika_mila_10-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Unutrašnjost prodajnog prostora Optike Mila sa mušterijama i vitrinama sa naočarima"></a></li>
+        <li><a class="gal" href="img/galerija/optika_mila_11-full.webp"><img src="img/galerija/optika_mila_11-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_11-thumb-320.webp 320w, img/galerija/optika_mila_11-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Tri poslužavnika sa okvirima za naočare — Ray-Ban, Boss, Dolce &amp; Gabbana, Police i Gucci"></a></li>
+        <li><a class="gal" href="img/galerija/optika_mila_12-full.webp"><img src="img/galerija/optika_mila_12-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_12-thumb-320.webp 320w, img/galerija/optika_mila_12-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Poslužavnik sa okvirima od metala tankih ivica u više boja"></a></li>
+        <li><a class="gal" href="img/galerija/optika_mila_4-full.webp"><img src="img/galerija/optika_mila_4-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_4-thumb-320.webp 320w, img/galerija/optika_mila_4-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Staklene vitrine sa naočarima, kutijama kontaktnih sočiva i promotivnim posterom"></a></li>
+        <li><a class="gal" href="img/galerija/optika_mila_7-full.webp"><img src="img/galerija/optika_mila_7-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_7-thumb-320.webp 320w, img/galerija/optika_mila_7-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Zidni i stojeći stalci sa okvirima naočara i ogledalo u prodajnom prostoru"></a></li>
+        <li><a class="gal" href="img/galerija/optika_mila_3-full.webp"><img src="img/galerija/optika_mila_3-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_3-thumb-320.webp 320w, img/galerija/optika_mila_3-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Ordinacija za pregled vida — osvijetljena tabla sa optotipima, stolica i aparat za pregled oka"></a></li>
+        <li><a class="gal" href="img/galerija/optika_mila_2-full.webp"><img src="img/galerija/optika_mila_2-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_2-thumb-320.webp 320w, img/galerija/optika_mila_2-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Dijagnostička oprema u ordinaciji — autorefraktometar, biomikroskop i probni okvir"></a></li>
+        <li><a class="gal" href="img/galerija/optika_mila_6-full.webp"><img src="img/galerija/optika_mila_6-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_6-thumb-320.webp 320w, img/galerija/optika_mila_6-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Doktorka u bijelom mantilu obavlja pregled oka pacijentu na aparatu, tabla sa optotipima u pozadini"></a></li>
+        <li><a class="gal" href="img/galerija/optika_mila_9-full.webp"><img src="img/galerija/optika_mila_9-thumb.webp" sizes="auto, (max-width:520px) 40vw, (max-width:980px) 180px, 190px" srcset="img/galerija/optika_mila_9-thumb-320.webp 320w, img/galerija/optika_mila_9-thumb.webp 480w" width="480" height="360" loading="lazy" decoding="async" alt="Pregled oka na biomikroskopu SL-10 uz prisustvo pratnje pacijenta"></a></li>
       </ul>
     </div>
   </section>
-
-  <!-- ================= KONTAKT ================= -->
   <section id="kontakt" class="band">
     <div class="wrap">
-      <h2 class="reveal">Kontakt</h2>
+      <h2>Kontakt</h2>
       <p class="lead kontakt-lead">Posjetite nas u radnji ili nas pozovite.</p>
-
-      <div class="contact-grid reveal">
+      <div class="contact-grid">
         <div>
           <dl class="facts">
             <div class="fact">
               <dt><svg class="fact-ico" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 1C5.7 1 3 3.7 3 7c0 4.5 6 10 6 10s6-5.5 6-10c0-3.3-2.7-6-6-6z"/><circle cx="9" cy="7" r="2"/></svg>Adresa</dt>
-              <dd>Petra Bojovića<br>73300 Foča, Bosna i Hercegovina</dd>
+              <dd>Petra Bojovića bb<br>73300 Foča, Bosna i Hercegovina</dd>
             </div>
             <div class="fact">
               <dt><svg class="fact-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Telefon</dt>
               <dd class="fact-links">
-                <a href="tel:+38758210734">+387 58 210 734</a>
-                <a href="tel:+38765466101">+387 65 466 101</a>
+                <div class="fact-phone"><span class="phone-kind">Fiksni</span> <a href="tel:+38758210734">+387 58 210 734</a></div>
+                <div class="fact-phone"><span class="phone-kind">Mobilni</span> <a href="tel:+38765466101">+387 65 466 101</a></div>
               </dd>
             </div>
             <div class="fact">
               <dt><svg class="fact-ico" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="16" height="12" rx="2"/><path d="M1 5l8 5 8-5"/></svg>Email</dt>
-              <dd class="fact-links"><a href="mailto:milaradovic54@gmail.com">milaradovic54@gmail.com</a></dd>
+              <dd class="fact-links fact-email"><a href="mailto:milaradovic54@gmail.com">milaradovic54@gmail.com</a></dd>
             </div>
             <div class="fact">
               <dt><svg class="fact-ico" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="8"/><path d="M9 4.5V9l3.5 2"/></svg>Radno vrijeme</dt>
-              <dd>
-                <table class="hours">
-                  <tbody>
-                    <tr><th scope="row">Ponedjeljak – petak</th><td>09:00–16:00</td></tr>
-                    <tr><th scope="row">Subota</th><td>09:00–14:00</td></tr>
-                    <tr><th scope="row">Nedjelja</th><td class="closed">zatvoreno</td></tr>
-                  </tbody>
-                </table>
-              </dd>
+              <dd><table class="hours"><tbody>
+                <tr><th scope="row">Ponedjeljak – petak</th><td>09:00–16:00</td></tr>
+                <tr><th scope="row">Subota</th><td>09:00–14:00</td></tr>
+                <tr><th scope="row">Nedjelja</th><td class="closed">zatvoreno</td></tr>
+              </tbody></table></dd>
             </div>
           </dl>
-
-          <a class="btn btn-solid btn-wide"
-             href="https://maps.google.com/?cid=6285597868325279433"
-             target="_blank" rel="noopener">Otvorite u Google Mapama</a>
+          <a class="btn btn-solid btn-wide" href="https://maps.google.com/?cid=6285597868325279433" target="_blank" rel="noopener">Otvorite u Google Mapama</a>
         </div>
-
-        <figure class="contact-map">
-          <div class="inner">
-            <!-- P47 (v17) — `tabindex="-1"`: bez njega Tab ulazi U Google-ov embed
-                 i zadrzi se tamo, pa se do linkova u podnozju stize tek poslije
-                 niza pritisaka kroz tudji interfejs. Mapa nije jedini put do
-                 informacije — adresa stoji u podacima lijevo, a dugme
-                 „Otvorite u Google Mapama" vodi na punu mapu. -->
-            <iframe
-              title="Lokacija Optike Mila na mapi — Petra Bojovića, Foča"
-              src="https://maps.google.com/maps?cid=6285597868325279433&amp;output=embed"
-              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
-              tabindex="-1"></iframe>
-          </div>
-        </figure>
+        <figure class="contact-map"><div class="inner">
+          <iframe title="Lokacija Optike Mila na mapi — Petra Bojovića bb, Foča" src="https://maps.google.com/maps?cid=6285597868325279433&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen tabindex="-1"></iframe>
+        </div></figure>
       </div>
     </div>
   </section>
-
 </main>
-
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div>
-      <div class="footer-brand">
-        <svg class="footer-mark" viewBox="0 0 1792 1280" width="32" height="23"
-             aria-hidden="true" focusable="false"><path fill="currentColor" d="M1664 704q-152-236-381-353q61 104 61 225q0 185-131.5 316.5T896 1024T579.5 892.5T448 576q0-121 61-225q-229 117-381 353q133 205 333.5 326.5T896 1152t434.5-121.5T1664 704M944 320q0-20-14-34t-34-14q-125 0-214.5 89.5T592 576q0 20 14 34t34 14t34-14t14-34q0-86 61-147t147-61q20 0 34-14t14-34m848 384q0 34-20 69q-140 230-376.5 368.5T896 1280t-499.5-139T20 773Q0 738 0 704t20-69q140-229 376.5-368T896 128t499.5 139T1772 635q20 35 20 69"/></svg>
-        <p class="footer-name">Optika Mila</p>
-      </div>
-      <p class="footer-legal">Zanatsko-trgovinska radnja „OPTIKA-MILA“ Mila Radović s.p.<br>
-      Petra Bojovića, 73300 Foča · JIB 4503790350002</p>
+      <div class="footer-brand"><svg class="footer-mark" viewBox="0 0 1792 1280" width="32" height="23" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M1664 704q-152-236-381-353q61 104 61 225q0 185-131.5 316.5T896 1024T579.5 892.5T448 576q0-121 61-225q-229 117-381 353q133 205 333.5 326.5T896 1152t434.5-121.5T1664 704M944 320q0-20-14-34t-34-14q-125 0-214.5 89.5T592 576q0 20 14 34t34 14t34-14t14-34q0-86 61-147t147-61q20 0 34-14t14-34m848 384q0 34-20 69q-140 230-376.5 368.5T896 1280t-499.5-139T20 773Q0 738 0 704t20-69q140-229 376.5-368T896 128t499.5 139T1772 635q20 35 20 69"/></svg><p class="footer-name">Optika Mila</p></div>
+      <p class="footer-legal">Zanatsko-trgovinska radnja „OPTIKA-MILA“ Mila Radović s.p.<br>Petra Bojovića bb, 73300 Foča · JIB 4503790350002</p>
     </div>
     <nav class="footer-nav" aria-label="Navigacija u podnožju">
-      <a href="#o-nama">O nama</a>
-      <a href="#van-foce">Van Foče</a>
-      <a href="#usluge">Usluge</a>
-      <a href="#arhiva">Arhiva</a>
-      <a href="#kontakt">Kontakt</a>
+      <a href="#o-nama">O nama</a><a href="#van-foce">Van Foče</a><a href="#usluge">Usluge</a><a href="#arhiva">Arhiva</a><a href="#kontakt">Kontakt</a>
     </nav>
     <div class="footer-bottom">
       <p class="footer-copy">© 1997–2026 Optika Mila Foča</p>
@@ -1431,26 +515,21 @@ setTimeout(function () {
     </div>
   </div>
 </footer>
-
 <dialog id="lightbox" class="lightbox" aria-label="Pregled fotografija iz arhive">
   <div class="lightbox-bar">
     <p class="lightbox-count" aria-live="polite"></p>
-    <button class="lightbox-close" type="button" aria-label="Zatvori pregled">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-    </button>
+    <button class="lightbox-close" type="button" aria-label="Zatvori pregled"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
   </div>
-
-  <div class="lightbox-stage">
-    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Prethodna fotografija">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
+  <div class="lightbox-stage" aria-busy="false">
+    <button class="lightbox-nav lightbox-prev" type="button" aria-label="Prethodna fotografija"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
     <img id="lightbox-img" alt="">
-    <button class="lightbox-nav lightbox-next" type="button" aria-label="Sljedeća fotografija">
-      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
+    <div class="lightbox-state" hidden>
+      <p class="lightbox-message" role="status" aria-live="polite"></p>
+      <button class="btn btn-solid lightbox-retry" type="button" hidden>Pokušajte ponovo</button>
+    </div>
+    <button class="lightbox-nav lightbox-next" type="button" aria-label="Sljedeća fotografija"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
   </div>
 </dialog>
-
-<script src="js/script.js" defer></script>
+<script src="/js/script.js?v=8f1f4f4da4c1" defer></script>
 </body>
 </html>

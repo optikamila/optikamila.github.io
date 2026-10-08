@@ -1,7 +1,10 @@
-# Radne kopije revizije. `audit-v2.py` ih pravi U SAMOM SAJTU (proba mora da vidi
-# relativne putanje) i brise ih na kraju — ali nasilan prekid se ne moze uhvatiti.
-# Ova linija je zadnja brana: i da ostanu, ne mogu da odu na sajt.
+# Privremene HTML stranice za lokalne provere.
 _*.html
+_optimization-reference/
+
+# Python cache
+__pycache__/
+*.py[cod]
 
 # Sistemsko smece
 .DS_Store
