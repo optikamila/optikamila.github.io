@@ -6,6 +6,31 @@
 
 **Status provera:** dorada je implementirana i proverena u navedenom obimu. Korisnik je potvrdio ručne provere i odobrio objavu 9. oktobra 2026. Ovaj dokument beleži provere pre objave; nije potvrda završenog deploymenta.
 
+## Naknadna lokalna korekcija CLS-a — 9. oktobar 2026.
+
+Ostatak dokumenta beleži prvobitnu doradu. Ova dopuna odnosi se na CLS korekciju nad objavljenim commit-om `2fa996d40738264135ac2e5e4ebc96323fbb0c44`; korisnik je odobrio njenu objavu 9. oktobra 2026.
+
+Korisnički PSI izveštaj pokazao je mobilni CLS 0,100. U odvojenom lokalnom threaded serveru, sa pravim layout-shift observerom i kontrolisanim odlaganjem resursa, potvrđen je glavni uzrok: deferred skripta tek posle prvog paint-a pretvara fallback navigaciju u sklopivi meni. Header/main tada prelaze sa približno **158,67 na 72,67 CSS px**. Samo taj nav pomak na 412 px daje layout-shift **0,096433**.
+
+Postojeća navigaciona inicijalizacija premeštena je u `src/navigation.js`, koju build ugrađuje odmah posle zaglavlja i pre `<main>`. Nema dodatnog zahteva ni unapred skrivene nefunkcionalne navigacije: `.nav-ready` se dodaje tek posle instaliranja handlera. Spoljašnja deferred skripta sada pokreće samo galeriju i scroll stanje headera. CSS, fontovi, slike i sadržaj nisu menjani. Bez JS-a ili bez inline inicijalizacije osnovna navigacija ostaje vidljiva; neuspešan deferred zahtev ne kvari meni i ostavlja direktne galerijske linkove.
+
+### Kontrolisana merenja pre/posle
+
+| Scenario | Pre izmene | Posle izmene |
+| --- | ---: | ---: |
+| 412 × 812, spoljna skripta zadržana do potvrđenog prvog paint-a i učitanih fontova | 0,096433 | 0,000273 |
+| 375 × 812, skripta i fontovi zadržani do potvrđenog prvog paint-a | 0,128194 | 0,000840 |
+
+Vrednosti su najveći CLS session-window zbir (prekid posle 1 s između pomaka ili 5 s od početka prozora), bez `hadRecentInput` događaja; nisu zbir svih pomaka tokom celog dugog testa. Browser/DPR su isti pri poređenju. Posle izmene nema zabeleženog main pomaka od kasne nav inicijalizacije; mali preostali pomaci vezani su za kasno učitavanje fontova. Fontovi nisu menjani samo radi numeričkog skora.
+
+Ovo su **lokalna kontrolisana merenja**, ne novi javni PSI rezultat. Rani automatizovani pokušaji bez iscrtavanja stranice davali su prazne observer/sampling podatke; oni nisu dokaz CLS=0 i nisu korišćeni za ovu tabelu. U navedenim probama potvrđeni su first-paint/FCP i početna geometrija pre puštanja blokiranih resursa.
+
+Konačna geometrija i izabrani stilovi upoređeni su sa objavljenom referencom u istom DPR 1,5 prolazu: **21 stanje × 59 elemenata, bez razlika** (prag geometrije 1 CSS px). Build/`-Check`, statički verifier i **15/15 izolovanih build testova** su prošli. Završni browser prolaz: **93/93 PASS**, native close događaji, deset učitanih velikih fotografija. Prošli su no-JS, izostanak inline inicijalizacije, neuspešan deferred zahtev uz funkcionalan meni/direktne foto linkove i provera da je visina zaglavlja stabilna pre parsiranja main-a. Frakcioni CSS/media handler testovi ostaju eksplicitne simulacije; fokusirani link je u kontrolisano otvorenoj nav putanji da ne bi izgubio fokus pre callback-a u skrivenom iframe-u. Dva ranija pokušaja zaustavila su se na toj testnoj trci; promenjen je samo driver, ne nav handler. Svih **44 lokalna HTTP resursa** i duboka 404 putanja su prošli.
+
+Veličine lokalnog izlaza: `index.html` **44.093 B**, `404.html` **23.249 B**, spoljni JS **4.997 B**; script hash `739b9c268dfb`. Mali nav blok sada je u HTML-u; ukupna HTML+JS veličina porasla je za oko 132 B, bez novog HTTP zahteva. Ranije veličine u tabeli niže odnose se na prvobitno objavljenu verziju.
+
+**Status provera: završene; objava odobrena.** Ovaj zapis nije potvrda završenog deploymenta. Produkcijski PSI treba ponoviti nakon deploymenta.
+
 ## Očuvane poslovne i vizuelne odluke
 
 - Pregledi van Foče ostaju odmah posle uvoda, pre usluga.

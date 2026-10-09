@@ -21,6 +21,8 @@ function Remove-CssComments([string]$Css) {
 $css = Remove-CssComments (Read-Source 'src/site.css')
 $eye = Read-Source 'src/eye.svg'
 $phone = Read-Source 'src/phone.svg'
+$navigation = Read-Source 'src/navigation.js'
+if ($navigation -match '(?i)</script') { throw 'Navigation source must not close its inline script element' }
 $scriptBytes = [IO.File]::ReadAllBytes([IO.Path]::Combine($rootPath, 'js/script.js'))
 $version = [Convert]::ToHexString([Security.Cryptography.SHA256]::HashData($scriptBytes)).ToLowerInvariant().Substring(0, 12)
 $parts = [ordered]@{
@@ -29,12 +31,15 @@ $parts = [ordered]@{
     '{{FOOTER_MARK}}' = $eye.Replace('class="brand-mark"', 'class="footer-mark"').Replace('width="38" height="27"', 'width="32" height="23"')
     '{{PHONE_ICON}}' = $phone
     '{{SCRIPT_VERSION}}' = $version
+    '{{NAVIGATION_SCRIPT}}' = $navigation
 }
 $outputs = [ordered]@{}
 # Validate both pages before replacing either generated file.
 foreach ($name in @('index', '404')) {
     $html = Read-Source "src/$name.template.html"
     if ([regex]::Matches($html, '\{\{STYLES\}\}').Count -ne 1) { throw "Expected one style placeholder in $name" }
+    $navigationCount = if ($name -eq 'index') { 1 } else { 0 }
+    if ([regex]::Matches($html, '\{\{NAVIGATION_SCRIPT\}\}').Count -ne $navigationCount) { throw "Unexpected navigation placeholder count in $name" }
     foreach ($part in $parts.GetEnumerator()) { $html = $html.Replace($part.Key, $part.Value) }
     if ($html -match '\{\{[A-Z_]+\}\}') { throw "Unresolved template placeholder in $name" }
     $outputs["$name.html"] = $utf8.GetBytes($html + "`n")

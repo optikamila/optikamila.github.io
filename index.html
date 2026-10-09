@@ -398,6 +398,69 @@ section[id]{ scroll-margin-top:calc(var(--header-height) + 16px); }
     <a class="header-call" href="tel:+38758210734">+387 58 210 734</a>
   </div>
 </header>
+<script id="navigation-init">
+(function () {
+  'use strict';
+
+  var header = document.querySelector('.site-header');
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('glavna-navigacija');
+
+  if (header && toggle && nav) {
+    var mq = window.matchMedia('(max-width: 980px)');
+    var headerHeight = null;
+    var setOpen = function (open) {
+      if (open) measureHeader();
+      nav.classList.toggle('is-open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (!open && mq.matches && nav.contains(document.activeElement)) {
+        toggle.focus({ preventScroll: true });
+      }
+    };
+    var isOpen = function () { return nav.classList.contains('is-open'); };
+    var measureHeader = function () {
+      var height = header.getBoundingClientRect().height;
+      if (height === headerHeight) return;
+      headerHeight = height;
+      document.documentElement.style.setProperty('--header-height', height + 'px');
+    };
+
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setOpen(!isOpen());
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && isOpen()) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (!isOpen() || e.target.closest('#glavna-navigacija') || e.target.closest('.nav-toggle')) return;
+      setOpen(false);
+    });
+    var onBreakpointChange = function () {
+      setOpen(false);
+      measureHeader();
+    };
+    if (mq.addEventListener) mq.addEventListener('change', onBreakpointChange);
+    else if (mq.addListener) mq.addListener(onBreakpointChange);
+
+    toggle.hidden = false;
+    header.classList.add('nav-ready');
+    measureHeader();
+    if ('ResizeObserver' in window) {
+      new ResizeObserver(measureHeader).observe(header);
+    } else {
+      window.addEventListener('resize', measureHeader, { passive: true });
+    }
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measureHeader);
+  }
+})();
+</script>
 <main id="main" tabindex="-1">
   <section id="o-nama" class="hero">
     <div class="wrap hero-grid">
@@ -530,6 +593,6 @@ section[id]{ scroll-margin-top:calc(var(--header-height) + 16px); }
     <button class="lightbox-nav lightbox-next" type="button" aria-label="Sljedeća fotografija"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg></button>
   </div>
 </dialog>
-<script src="/js/script.js?v=8f1f4f4da4c1" defer></script>
+<script src="/js/script.js?v=739b9c268dfb" defer></script>
 </body>
 </html>

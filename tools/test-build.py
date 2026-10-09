@@ -25,7 +25,7 @@ class BuildTests(unittest.TestCase):
         self.root = Path(self.temporary.name)
         for directory in ("src", "js", "img"):
             (self.root / directory).mkdir()
-        for name in ("site.css", "index.template.html", "404.template.html", "eye.svg", "phone.svg"):
+        for name in ("site.css", "index.template.html", "404.template.html", "eye.svg", "phone.svg", "navigation.js"):
             shutil.copyfile(ROOT / "src" / name, self.root / "src" / name)
         shutil.copyfile(ROOT / "js/script.js", self.root / "js/script.js")
 
@@ -101,6 +101,42 @@ class BuildTests(unittest.TestCase):
             text = (self.root / name).read_text(encoding="utf-8")
             self.assertIn(f"/js/script.js?v={new_hash}", text)
             self.assertNotIn(f"/js/script.js?v={old_hash}", text)
+
+    def test_navigation_source_updates_inline_output_before_main(self):
+        self.run_script()
+        before_404 = (self.root / "404.html").read_bytes()
+        navigation = self.root / "src/navigation.js"
+        navigation.write_bytes(navigation.read_bytes() + b"\n// isolated navigation fixture\n")
+        self.run_script()
+        text = (self.root / "index.html").read_text(encoding="utf-8")
+        self.assertEqual(text.count('id="navigation-init"'), 1)
+        self.assertLess(text.index("// isolated navigation fixture"), text.index('<main id="main"'))
+        self.assertEqual(before_404, (self.root / "404.html").read_bytes())
+
+    def test_missing_navigation_source_preserves_outputs(self):
+        self.run_script()
+        before = self.output_state()
+        (self.root / "src/navigation.js").unlink()
+        self.run_script(success=False)
+        self.assertEqual(before, self.output_state())
+
+    def test_missing_or_duplicate_navigation_placeholder_preserves_outputs(self):
+        self.run_script()
+        before = self.output_state()
+        template = self.root / "src/index.template.html"
+        original = template.read_text(encoding="utf-8")
+        for replacement in ("", "{{NAVIGATION_SCRIPT}}{{NAVIGATION_SCRIPT}}"):
+            with self.subTest(replacement=replacement):
+                template.write_text(original.replace("{{NAVIGATION_SCRIPT}}", replacement), encoding="utf-8")
+                self.run_script(success=False)
+                self.assertEqual(before, self.output_state())
+
+    def test_navigation_source_cannot_close_inline_script(self):
+        self.run_script()
+        before = self.output_state()
+        (self.root / "src/navigation.js").write_text("</ScRiPt>", encoding="utf-8")
+        self.run_script(success=False)
+        self.assertEqual(before, self.output_state())
 
     def test_css_strings_urls_and_significant_spaces_are_preserved(self):
         css = r'''/* remove outside strings */

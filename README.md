@@ -21,9 +21,12 @@ Statički sajt [www.optikamila.com](https://www.optikamila.com/), pripremljen za
 | `src/index.template.html` | `index.html` |
 | `src/404.template.html` | `404.html` |
 | `src/eye.svg`, `src/phone.svg` | Inline ikonice u HTML-u |
-| `js/script.js` | Običan JavaScript, bez transpajliranja |
+| `src/navigation.js` | Inline inicijalizacija menija pre glavnog sadržaja |
+| `js/script.js` | Deferred galerija i scroll stanje zaglavlja, bez transpajliranja |
 
-**Ne uređivati generisane HTML fajlove direktno.** CSS je inline radi očuvanja jednostavne kritične putanje, ali se održava na jednom mestu. URL skripte dobija hash sadržaja radi osvežavanja keša.
+**Ne uređivati generisane HTML fajlove direktno.** CSS je inline radi očuvanja jednostavne kritične putanje, ali se održava na jednom mestu. URL spoljašnje skripte dobija hash sadržaja radi osvežavanja keša.
+
+Navigacija se inicijalizuje odmah posle zaglavlja, pre parsiranja `<main>`, bez dodatnog HTTP zahteva. Time visina mobilnog zaglavlja ne čeka učitavanje galerijske skripte i ne pomera glavni sadržaj. Klasa `nav-ready` i dalje se dodaje tek nakon instaliranja handlera. Bez JavaScripta ili bez inline inicijalizacije osnovna navigacija ostaje vidljiva; neuspešan zahtev za spoljašnju skriptu ne kvari meni, a fotografije ostaju obični linkovi.
 
 Komande se pokreću iz korena ovog repozitorijuma. Potreban je PowerShell 7:
 
@@ -59,7 +62,7 @@ Izolovani build testovi koriste standardnu biblioteku i privremene foldere. OG t
 python -I ./tools/test-build.py
 ```
 
-Završne provere: **11/11 build testova**, build/`-Check`, offline/upstream verifikacija, **90/90 browser provera sa native close događajima**, 44 HTTP resursa i duboka 404 putanja. Frakcioni breakpoint handler testovi koriste označenu simulaciju media događaja; zaseban native prelazak 981 → 980 px u aktivnom dokumentu potvrdio je vraćanje fokusa. Dogovoreni izgled je sačuvan u poređenju 21 stanja × 59 elemenata. Korisnik je potvrdio ručne provere prethodno navedenih ograničenja (telefon, Safari/Firefox, 200% zoom i Google mapa).
+Prvobitno objavljena verzija: 11/11 build testova i 90/90 browser provera. Naknadna lokalna CLS korekcija: **15/15 build testova**, build/`-Check`, offline verifikacija, **93/93 browser provere sa native close događajima**, 44 lokalna HTTP resursa i duboka 404 putanja. Kontrolisani pre/posle CLS na 412 px: **0,096433 → 0,000273**; pri zajedničkom odlaganju skripte i fontova na 375 px: **0,128194 → 0,000840**. To nisu novi produkcijski PSI rezultati; korisnik je odobrio objavu ove korekcije, a rezultat deploymenta proverava se odvojeno. Frakcioni breakpoint handler testovi koriste označenu simulaciju media događaja; zaseban native prelazak 981 → 980 px u aktivnom dokumentu potvrdio je vraćanje fokusa. Dogovoreni izgled je sačuvan u poređenju 21 stanja × 59 elemenata. Korisnik je potvrdio ručne provere prethodno navedenih ograničenja (telefon, Safari/Firefox, 200% zoom i Google mapa).
 
 Detalji i granice ovih provera su u [VERIFIKACIJA.md](VERIFIKACIJA.md). Nema izmišljenog produkcijskog Lighthouse skora niti tvrdnje da je sajt određen procenat brži.
 

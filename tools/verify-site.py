@@ -113,7 +113,7 @@ def main():
         all_ids = [n["attrs"]["id"] for n in doc.nodes if "id" in n["attrs"]]
         check(len(all_ids) == len(set(all_ids)), f"{name}: unique IDs")
         check(doc.find("html", lang="sr-Latn"), f"{name}: Serbian Latin language")
-        check(not any(token in texts[name] for token in ("{{STYLES}}", "{{BRAND_MARK}}", "{{SCRIPT_VERSION}}")), f"{name}: expanded template")
+        check(not any(token in texts[name] for token in ("{{STYLES}}", "{{BRAND_MARK}}", "{{SCRIPT_VERSION}}", "{{NAVIGATION_SCRIPT}}")), f"{name}: expanded template")
         for node in doc.nodes:
             attrs = node["attrs"]
             for attr in ("src", "href"):
@@ -134,6 +134,14 @@ def main():
                     check(path is not None and path.is_file(), f"{name}: srcset {path.name}")
         version = hashlib.sha256((ROOT / "js/script.js").read_bytes()).hexdigest()[:12]
         check(doc.find("script", src=f"/js/script.js?v={version}"), f"{name}: current script hash")
+
+    navigation = index.find("script", id="navigation-init")
+    check(len(navigation) == 1 and "src" not in navigation[0]["attrs"], "one inline navigation initializer")
+    check(navigation[0]["text"].strip() == (ROOT / "src/navigation.js").read_text(encoding="utf-8").strip(), "inline navigation matches its source")
+    check(texts["index.html"].index('id="navigation-init"') < texts["index.html"].index('<main id="main"'), "navigation initializes before main is parsed")
+    check(not docs["404.html"].find("script", id="navigation-init"), "404 has no unnecessary navigation initializer")
+    check("nav-ready" not in (ROOT / "js/script.js").read_text(encoding="utf-8"), "deferred script does not initialize navigation twice")
+    check(all("clsProbe" not in text and "layout-shift" not in text for text in texts.values()), "no CLS test instrumentation in production pages")
 
     sections = [n["attrs"].get("id") for n in index.find("section") if n["parent"] and n["parent"]["tag"] == "main"]
     check(sections == ["o-nama", "van-foce", "usluge", "arhiva", "kontakt"], "regional visits immediately after introduction")

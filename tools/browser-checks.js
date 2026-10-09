@@ -241,7 +241,10 @@ async function runBrowserChecks(frame, visualBaseline, options = {}) {
         emitMediaChange();
         const mobile = bw.testMediaQueries[0].matches;
         const cssMobile = bw.getComputedStyle(bt).display !== 'none';
-        if (cssMobile) bt.click();
+        bw.focus();
+        // Keep the link visible until the simulated handler closes the menu.
+        // Otherwise a hidden iframe may blur it before delivering media events.
+        bt.click();
         firstLink.focus({ preventScroll: true });
         boundaryFrame.style.width = cssMobile ? '981px' : '980px';
         await sleep(50);
@@ -386,6 +389,10 @@ async function runBrowserChecks(frame, visualBaseline, options = {}) {
     }
 
     const source = await (await fetch('/')).text();
+    await load(() => { frame.srcdoc = source.replace('<main id="main"', '<script>window.navigationBeforeMain = { ready:document.querySelector(".site-header").classList.contains("nav-ready"), hasMain:!!document.querySelector("main"), height:document.querySelector(".site-header").getBoundingClientRect().height };</script><main id="main"'); });
+    d = frame.contentDocument;
+    w = frame.contentWindow;
+    check(w.navigationBeforeMain.ready && !w.navigationBeforeMain.hasMain && Math.abs(w.navigationBeforeMain.height - d.querySelector('.site-header').getBoundingClientRect().height) <= 1, 'navigation reaches stable height before main is parsed');
     await load(() => {
       frame.setAttribute('sandbox', 'allow-same-origin');
       frame.srcdoc = source;
@@ -399,7 +406,15 @@ async function runBrowserChecks(frame, visualBaseline, options = {}) {
     });
     d = frame.contentDocument;
     w = frame.contentWindow;
-    check(!d.querySelector('.site-header').classList.contains('nav-ready') && d.querySelector('.nav-toggle').hidden && w.getComputedStyle(d.querySelector('.site-nav')).display !== 'none', 'failed script request keeps navigation available');
+    const failedToggle = d.querySelector('.nav-toggle');
+    failedToggle.click();
+    check(d.querySelector('.site-header').classList.contains('nav-ready') && failedToggle.getAttribute('aria-expanded') === 'true' && w.getComputedStyle(d.querySelector('.site-nav')).display !== 'none', 'failed deferred script keeps inline navigation functional');
+    d.dispatchEvent(new w.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    check(failedToggle.getAttribute('aria-expanded') === 'false' && d.activeElement === failedToggle && [...d.querySelectorAll('a.gal')].every(a => /-full\.webp$/.test(a.href)), 'failed deferred script retains menu focus and direct photo links');
+    await load(() => { frame.srcdoc = source.replace(/<script id="navigation-init">[\s\S]*?<\/script>/, ''); });
+    d = frame.contentDocument;
+    w = frame.contentWindow;
+    check(!d.querySelector('.site-header').classList.contains('nav-ready') && d.querySelector('.nav-toggle').hidden && w.getComputedStyle(d.querySelector('.site-nav')).display !== 'none', 'missing inline initializer keeps basic navigation visible');
     await load(() => { frame.srcdoc = source.replace('<head>', '<head><script>window.ResizeObserver = undefined;</script>'); });
     d = frame.contentDocument;
     w = frame.contentWindow;
